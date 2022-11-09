@@ -1,0 +1,32 @@
+import { Controller, Get } from '@nestjs/common';
+import { MacroService } from './macro.service';
+
+@Controller('macro')
+export class MacroController {
+  constructor(private readonly macroService: MacroService) {}
+
+  @Get('tango')
+  getTango() {
+    return this.macroService.getTango();
+  }
+
+  @Get('skvortsy')
+  getSkvortsy() {
+    return this.macroService.getSkvortsy();
+  }
+
+  @Get('put')
+  getPut() {
+    return this.macroService.getPut();
+  }
+
+  @Get('family')
+  getFamily() {
+    return this.macroService.getFamily();
+  }
+
+  @Get('vse-svoi')
+  getVseSvoi() {
+    return this.macroService.getVseSvoi();
+  }
+}

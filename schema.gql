@@ -1,0 +1,4194 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BuildingCountAggregate {
+  id: Int!
+  name: Int!
+  address: Int!
+  completionDate: Int!
+  completed: Int!
+  latitude: Int!
+  longitude: Int!
+  propertyClass: Int!
+  decorType: Int!
+  wallMaterial: Int!
+  img: Int!
+  domRfId: Int!
+  domClickId: Int!
+  cityId: Int!
+  districtId: Int!
+  developerId: Int!
+  groupId: Int!
+  complexId: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type BuildingAvgAggregate {
+  id: Float
+  latitude: Float
+  longitude: Float
+  domRfId: Float
+  domClickId: Float
+  cityId: Float
+  districtId: Float
+  developerId: Float
+  groupId: Float
+  complexId: Float
+}
+
+type BuildingSumAggregate {
+  id: Int
+  latitude: Float
+  longitude: Float
+  domRfId: Int
+  domClickId: Int
+  cityId: Int
+  districtId: Int
+  developerId: Int
+  groupId: Int
+  complexId: Int
+}
+
+type BuildingMinAggregate {
+  id: Int
+  name: String
+  address: String
+  completionDate: DateTime
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int
+  districtId: Int
+  developerId: Int
+  groupId: Int
+  complexId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum PropertyClass {
+  TYPICAL
+  ECONOMY
+  COMFORT
+  BUSINESS
+  PREMIUM
+}
+
+enum DecorType {
+  WITHOUT
+  UNDER_FINISHING
+  FINISHING
+  FULL
+  OPTIONALLY
+}
+
+enum WallMaterial {
+  MONOLITH_BRICK
+  BLOCKS
+  BRICK
+  PANEL
+  MONOLITH
+}
+
+type BuildingMaxAggregate {
+  id: Int
+  name: String
+  address: String
+  completionDate: DateTime
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int
+  districtId: Int
+  developerId: Int
+  groupId: Int
+  complexId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type BuildingCount {
+  sales: Int!
+  properties: Int!
+}
+
+type DeveloperCount {
+  buildings: Int!
+}
+
+type Developer {
+  id: Int!
+  name: String!
+  fullName: String!
+  legalAddress: String
+  actualAddress: String
+  inn: String!
+  kpp: String
+  ogrn: String
+  manager: String
+  website: String
+  phone: String
+  email: String
+  info: String
+  group: Group!
+  groupId: Int!
+  buildings: [Building!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: DeveloperCount!
+}
+
+type DistrictCount {
+  complexes: Int!
+  buildings: Int!
+}
+
+type District {
+  id: Int!
+  name: String!
+  city: City!
+  cityId: Int!
+  complexes: [Complex!]
+  buildings: [Building!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: DistrictCount!
+}
+
+type ComplexCount {
+  buildings: Int!
+}
+
+type Complex {
+  id: Int!
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  group: Group!
+  groupId: Int!
+  city: City!
+  cityId: Int!
+  district: District!
+  districtId: Int!
+  buildings: [Building!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: ComplexCount!
+}
+
+type GroupCount {
+  regions: Int!
+  buildings: Int!
+  developers: Int!
+  complexes: Int!
+}
+
+type Group {
+  id: Int!
+  name: String!
+  regions: [Region!]
+  buildings: [Building!]
+  developers: [Developer!]
+  complexes: [Complex!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: GroupCount!
+}
+
+type RegionCount {
+  cities: Int!
+  groups: Int!
+}
+
+type Region {
+  id: Int!
+  name: String!
+  cities: [City!]
+  groups: [Group!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: RegionCount!
+}
+
+type CityCount {
+  districts: Int!
+  complexes: Int!
+  buildings: Int!
+}
+
+type City {
+  id: Int!
+  name: String!
+  regionId: Int!
+  region: Region!
+  districts: [District!]
+  complexes: [Complex!]
+  buildings: [Building!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: CityCount!
+}
+
+type Sale {
+  id: Int!
+  month: Int!
+  year: Int!
+  amount: Int!
+  area: Float!
+  sum: Float!
+  propertyType: PropertyType!
+  building: Building!
+  buildingId: Int!
+}
+
+enum PropertyType {
+  LIVING
+  COMMERCIAL
+  PARKING
+}
+
+type Property {
+  id: Int!
+  number: String!
+  floor: Int!
+  entrance: Int
+  totalArea: Float!
+  livingArea: Float
+  rooms: Int
+  wallHeight: Float
+  propertyType: PropertyType!
+  building: Building!
+  buildingId: Int!
+}
+
+type Building {
+  id: Int!
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean!
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  city: City!
+  cityId: Int!
+  district: District!
+  districtId: Int!
+  developer: Developer!
+  developerId: Int!
+  group: Group!
+  groupId: Int!
+  complex: Complex!
+  complexId: Int!
+  sales: [Sale!]
+  properties: [Property!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: BuildingCount!
+}
+
+type CityCountAggregate {
+  id: Int!
+  name: Int!
+  regionId: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type CityAvgAggregate {
+  id: Float
+  regionId: Float
+}
+
+type CitySumAggregate {
+  id: Int
+  regionId: Int
+}
+
+type CityMinAggregate {
+  id: Int
+  name: String
+  regionId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type CityMaxAggregate {
+  id: Int
+  name: String
+  regionId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type ComplexCountAggregate {
+  id: Int!
+  name: Int!
+  shortName: Int!
+  website: Int!
+  info: Int!
+  domRfId: Int!
+  domClickId: Int!
+  groupId: Int!
+  cityId: Int!
+  districtId: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type ComplexAvgAggregate {
+  id: Float
+  domRfId: Float
+  domClickId: Float
+  groupId: Float
+  cityId: Float
+  districtId: Float
+}
+
+type ComplexSumAggregate {
+  id: Int
+  domRfId: Int
+  domClickId: Int
+  groupId: Int
+  cityId: Int
+  districtId: Int
+}
+
+type ComplexMinAggregate {
+  id: Int
+  name: String
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  groupId: Int
+  cityId: Int
+  districtId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type ComplexMaxAggregate {
+  id: Int
+  name: String
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  groupId: Int
+  cityId: Int
+  districtId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type DeveloperCountAggregate {
+  id: Int!
+  name: Int!
+  fullName: Int!
+  legalAddress: Int!
+  actualAddress: Int!
+  inn: Int!
+  kpp: Int!
+  ogrn: Int!
+  manager: Int!
+  website: Int!
+  phone: Int!
+  email: Int!
+  info: Int!
+  groupId: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type DeveloperAvgAggregate {
+  id: Float
+  groupId: Float
+}
+
+type DeveloperSumAggregate {
+  id: Int
+  groupId: Int
+}
+
+type DeveloperMinAggregate {
+  id: Int
+  name: String
+  fullName: String
+  legalAddress: String
+  actualAddress: String
+  inn: String
+  kpp: String
+  ogrn: String
+  manager: String
+  website: String
+  phone: String
+  email: String
+  info: String
+  groupId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type DeveloperMaxAggregate {
+  id: Int
+  name: String
+  fullName: String
+  legalAddress: String
+  actualAddress: String
+  inn: String
+  kpp: String
+  ogrn: String
+  manager: String
+  website: String
+  phone: String
+  email: String
+  info: String
+  groupId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type DistrictCountAggregate {
+  id: Int!
+  name: Int!
+  cityId: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type DistrictAvgAggregate {
+  id: Float
+  cityId: Float
+}
+
+type DistrictSumAggregate {
+  id: Int
+  cityId: Int
+}
+
+type DistrictMinAggregate {
+  id: Int
+  name: String
+  cityId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type DistrictMaxAggregate {
+  id: Int
+  name: String
+  cityId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type GroupCountAggregate {
+  id: Int!
+  name: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type GroupAvgAggregate {
+  id: Float
+}
+
+type GroupSumAggregate {
+  id: Int
+}
+
+type GroupMinAggregate {
+  id: Int
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type GroupMaxAggregate {
+  id: Int
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type LeadCountAggregate {
+  id: Int!
+  uniq_id: Int!
+  host: Int!
+  name: Int!
+  phone: Int!
+  email: Int!
+  form_name: Int!
+  form_id: Int!
+  tran_id: Int!
+  utm_source: Int!
+  utm_medium: Int!
+  utm_campaign: Int!
+  utm_term: Int!
+  _all: Int!
+}
+
+type LeadAvgAggregate {
+  id: Float
+}
+
+type LeadSumAggregate {
+  id: Int
+}
+
+type LeadMinAggregate {
+  id: Int
+  uniq_id: String
+  host: String
+  name: String
+  phone: String
+  email: String
+  form_name: String
+  form_id: String
+  tran_id: String
+  utm_source: String
+  utm_medium: String
+  utm_campaign: String
+  utm_term: String
+}
+
+type LeadMaxAggregate {
+  id: Int
+  uniq_id: String
+  host: String
+  name: String
+  phone: String
+  email: String
+  form_name: String
+  form_id: String
+  tran_id: String
+  utm_source: String
+  utm_medium: String
+  utm_campaign: String
+  utm_term: String
+}
+
+type LogCountAggregate {
+  id: Int!
+  operation: Int!
+  userId: Int!
+  createdAt: Int!
+  _all: Int!
+}
+
+type LogAvgAggregate {
+  id: Float
+  userId: Float
+}
+
+type LogSumAggregate {
+  id: Int
+  userId: Int
+}
+
+type LogMinAggregate {
+  id: Int
+  operation: String
+  userId: Int
+  createdAt: DateTime
+}
+
+type LogMaxAggregate {
+  id: Int
+  operation: String
+  userId: Int
+  createdAt: DateTime
+}
+
+type Token {
+  id: Int!
+  refreshToken: String!
+  user: User!
+  userId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserCount {
+  logs: Int!
+}
+
+type User {
+  id: Int!
+  email: String!
+  name: String
+  phone: String
+  password: String!
+  activationLink: String
+  activated: Boolean
+  role: Role!
+  logs: [Log!]
+  token: Token
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: UserCount!
+}
+
+enum Role {
+  USER
+  ADMIN
+  EDITOR
+}
+
+type Log {
+  id: Int!
+  operation: String!
+  user: User!
+  userId: Int!
+  createdAt: DateTime!
+}
+
+type OfferCountAggregate {
+  id: Int!
+  floor: Int!
+  floors: Int!
+  price: Int!
+  address: Int!
+  buildingId: Int!
+  building: Int!
+  developer: Int!
+  developerId: Int!
+  complex: Int!
+  complexId: Int!
+  area: Int!
+  rooms: Int!
+  image: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type OfferAvgAggregate {
+  id: Float
+  floor: Float
+  floors: Float
+  price: Float
+  buildingId: Float
+  developerId: Float
+  complexId: Float
+  area: Float
+  rooms: Float
+}
+
+type OfferSumAggregate {
+  id: Int
+  floor: Int
+  floors: Int
+  price: Float
+  buildingId: Int
+  developerId: Int
+  complexId: Int
+  area: Float
+  rooms: Int
+}
+
+type OfferMinAggregate {
+  id: Int
+  floor: Int
+  floors: Int
+  price: Float
+  address: String
+  buildingId: Int
+  building: String
+  developer: String
+  developerId: Int
+  complex: String
+  complexId: Int
+  area: Float
+  rooms: Int
+  image: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type OfferMaxAggregate {
+  id: Int
+  floor: Int
+  floors: Int
+  price: Float
+  address: String
+  buildingId: Int
+  building: String
+  developer: String
+  developerId: Int
+  complex: String
+  complexId: Int
+  area: Float
+  rooms: Int
+  image: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type PropertyAvgAggregate {
+  id: Float
+  floor: Float
+  entrance: Float
+  totalArea: Float
+  livingArea: Float
+  rooms: Float
+  wallHeight: Float
+  buildingId: Float
+}
+
+type PropertySumAggregate {
+  id: Int
+  floor: Int
+  entrance: Int
+  totalArea: Float
+  livingArea: Float
+  rooms: Int
+  wallHeight: Float
+  buildingId: Int
+}
+
+type PropertyMinAggregate {
+  id: Int
+  number: String
+  floor: Int
+  entrance: Int
+  totalArea: Float
+  livingArea: Float
+  rooms: Int
+  wallHeight: Float
+  propertyType: PropertyType
+  buildingId: Int
+}
+
+type PropertyMaxAggregate {
+  id: Int
+  number: String
+  floor: Int
+  entrance: Int
+  totalArea: Float
+  livingArea: Float
+  rooms: Int
+  wallHeight: Float
+  propertyType: PropertyType
+  buildingId: Int
+}
+
+type AggregateProperty {
+  _count: Int!
+  _avg: PropertyAvgAggregate
+  _sum: PropertySumAggregate
+  _min: PropertyMinAggregate
+  _max: PropertyMaxAggregate
+}
+
+type PropertyCountAggregate {
+  id: Int!
+  number: Int!
+  floor: Int!
+  entrance: Int!
+  totalArea: Int!
+  livingArea: Int!
+  rooms: Int!
+  wallHeight: Int!
+  propertyType: Int!
+  buildingId: Int!
+  _all: Int!
+}
+
+type RegionCountAggregate {
+  id: Int!
+  name: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type RegionAvgAggregate {
+  id: Float
+}
+
+type RegionSumAggregate {
+  id: Int
+}
+
+type RegionMinAggregate {
+  id: Int
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type RegionMaxAggregate {
+  id: Int
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type SaleCountAggregate {
+  id: Int!
+  month: Int!
+  year: Int!
+  amount: Int!
+  area: Int!
+  sum: Int!
+  propertyType: Int!
+  buildingId: Int!
+  _all: Int!
+}
+
+type SaleAvgAggregate {
+  id: Float
+  month: Float
+  year: Float
+  amount: Float
+  area: Float
+  sum: Float
+  buildingId: Float
+}
+
+type SaleSumAggregate {
+  id: Int
+  month: Int
+  year: Int
+  amount: Int
+  area: Float
+  sum: Float
+  buildingId: Int
+}
+
+type SaleMinAggregate {
+  id: Int
+  month: Int
+  year: Int
+  amount: Int
+  area: Float
+  sum: Float
+  propertyType: PropertyType
+  buildingId: Int
+}
+
+type SaleMaxAggregate {
+  id: Int
+  month: Int
+  year: Int
+  amount: Int
+  area: Float
+  sum: Float
+  propertyType: PropertyType
+  buildingId: Int
+}
+
+type TokenCountAggregate {
+  id: Int!
+  refreshToken: Int!
+  userId: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type TokenAvgAggregate {
+  id: Float
+  userId: Float
+}
+
+type TokenSumAggregate {
+  id: Int
+  userId: Int
+}
+
+type TokenMinAggregate {
+  id: Int
+  refreshToken: String
+  userId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type TokenMaxAggregate {
+  id: Int
+  refreshToken: String
+  userId: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UserCountAggregate {
+  id: Int!
+  email: Int!
+  name: Int!
+  phone: Int!
+  password: Int!
+  activationLink: Int!
+  activated: Int!
+  role: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  _all: Int!
+}
+
+type UserAvgAggregate {
+  id: Float
+}
+
+type UserSumAggregate {
+  id: Int
+}
+
+type UserMinAggregate {
+  id: Int
+  email: String
+  name: String
+  phone: String
+  password: String
+  activationLink: String
+  activated: Boolean
+  role: Role
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UserMaxAggregate {
+  id: Int
+  email: String
+  name: String
+  phone: String
+  password: String
+  activationLink: String
+  activated: Boolean
+  role: Role
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type TokenPayload {
+  id: Int!
+  email: String!
+  activated: Boolean!
+  role: String!
+}
+
+type LoginResponse {
+  accessToken: String!
+  refreshToken: String!
+  user: TokenPayload!
+}
+
+type BuildingsForMapResponse {
+  id: Int!
+  name: String!
+  complex: Complex!
+  latitude: Float!
+  longitude: Float!
+  propertyClass: PropertyClass
+}
+
+type BuildingsResponse {
+  buildings: [Building!]!
+  count: Int!
+}
+
+type SalesSumResponse {
+  area: Float
+  amount: Int
+  sum: Float
+}
+
+type BuildingSalesSumResponse {
+  living: SalesSumResponse!
+  commercial: SalesSumResponse!
+  parking: SalesSumResponse!
+}
+
+type SalesAnalyticsResponse {
+  date: String!
+  area: Float
+  amount: Int
+  sum: Float
+}
+
+type LivingPropsAggregateResponse {
+  oneRoom: AggregateProperty!
+  twoRoom: AggregateProperty!
+  threeRoom: AggregateProperty!
+  fourRoom: AggregateProperty!
+}
+
+type PropAggregateResponse {
+  living: AggregateProperty!
+  commercial: AggregateProperty!
+  parking: AggregateProperty!
+}
+
+type PropCountsResponse {
+  living: Int!
+  commercial: Int!
+  parking: Int!
+}
+
+type GroupWithSalesResponse {
+  id: Int!
+  name: String!
+  date: String!
+  sales: SalesSumResponse!
+}
+
+type Query {
+  cities(regionId: Int): [City!]!
+  city(id: Int!): City!
+  regions: [Region!]!
+  region(id: Int!): Region!
+  users: [User!]!
+  user(id: Int!): User!
+  buildings(groupId: Int, complexId: Int, cityId: Int, districtId: Int, completed: Boolean, page: Int): [Building!]!
+  buildingsWithCount(groupId: Int, complexId: Int, cityId: Int, districtId: Int, completed: Boolean, page: Int): BuildingsResponse!
+  buildingsForMap: [BuildingsForMapResponse!]!
+  building(id: Int!): Building!
+  buildingWithProps(id: Int!): Building!
+  sales: [Sale!]!
+  sale(id: Int!): Sale!
+  salesAnalytics(propertyType: PropertyType!): [SalesAnalyticsResponse!]!
+  getSalesSumByBuildingId(buildingId: Int!): BuildingSalesSumResponse!
+  properties: [Property!]!
+  property(id: Int!): Property!
+  propCounts(buildingId: Int!): PropCountsResponse!
+  propAggregate(buildingIds: [Int!]!): PropAggregateResponse!
+  livingPropsAggregate(buildingId: Int!): LivingPropsAggregateResponse!
+  districts(cityId: Int): [District!]!
+  district(id: Int!): District!
+  groups: [Group!]!
+  groupsWithSalesSum(propertyType: PropertyType!, date: String!): [GroupWithSalesResponse!]!
+  group(id: Int!): Group!
+  developers(groupId: Int): [Developer!]!
+  developer(id: Int!): Developer!
+  complexes(groupId: Int, districtId: Int, cityId: Int): [Complex!]!
+  complex(id: Int!): Complex!
+}
+
+type Mutation {
+  createCity(createCityInput: CityUncheckedCreateInput!): City!
+  updateCity(input: CityUncheckedUpdateInput!, id: Float!): City!
+  removeCity(id: Int!): City!
+  createRegion(input: RegionUncheckedCreateInput!): Region!
+  updateRegion(id: Float!, input: RegionUncheckedUpdateInput!): Region!
+  removeRegion(id: Int!): Region!
+  signup(input: RegistrationInput!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  refresh: LoginResponse!
+  createBuilding(createBuildingInput: BuildingUncheckedCreateInput!, file: Upload): Building!
+  updateBuilding(id: Int!, updateBuildingInput: BuildingUncheckedUpdateInput!, file: Upload): Building!
+  removeBuilding(id: Int!): Building!
+  createSale(input: SaleUncheckedCreateInput!): Sale!
+  saveSales(input: [SaleUncheckedCreateInput!]!): [Sale!]!
+  updateSale(id: Int!, input: SaleUncheckedUpdateInput!): Sale!
+  removeSale(id: Int!): Sale!
+  createProperty(input: PropertyUncheckedCreateInput!): Property!
+  saveAllProperies(input: [PropertyUncheckedCreateInput!]!): [Property!]!
+  updateProperty(id: Int!, input: PropertyUpdateInput!): Property!
+  removeProperty(id: Int!): Property!
+  createDistrict(input: DistrictUncheckedCreateInput!): District!
+  updateDistrict(id: Int!, input: DistrictUncheckedUpdateInput!): District!
+  removeDistrict(id: Int!): District!
+  createGroup(input: GroupUncheckedCreateInput!): Group!
+  updateGroup(id: Int!, input: GroupUncheckedUpdateInput!): Group!
+  removeGroup(id: Int!): Group!
+  createDeveloper(input: DeveloperUncheckedCreateInput!): Developer!
+  updateDeveloper(id: Int!, input: DeveloperUncheckedUpdateInput!): Developer!
+  removeDeveloper(id: Int!): Developer!
+  createComplex(createComplexInput: ComplexUncheckedCreateInput!): Complex!
+  updateComplex(id: Int!, input: ComplexUncheckedUpdateInput!): Complex!
+  removeComplex(id: Int!): Complex!
+}
+
+input CityUncheckedCreateInput {
+  id: Int
+  name: String!
+  regionId: Int!
+  districts: DistrictUncheckedCreateNestedManyWithoutCityInput
+  complexes: ComplexUncheckedCreateNestedManyWithoutCityInput
+  buildings: BuildingUncheckedCreateNestedManyWithoutCityInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DistrictUncheckedCreateNestedManyWithoutCityInput {
+  create: [DistrictCreateWithoutCityInput!]
+  connectOrCreate: [DistrictCreateOrConnectWithoutCityInput!]
+  createMany: DistrictCreateManyCityInputEnvelope
+  connect: [DistrictWhereUniqueInput!]
+}
+
+input DistrictCreateWithoutCityInput {
+  name: String!
+  complexes: ComplexCreateNestedManyWithoutDistrictInput
+  buildings: BuildingCreateNestedManyWithoutDistrictInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexCreateNestedManyWithoutDistrictInput {
+  create: [ComplexCreateWithoutDistrictInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutDistrictInput!]
+  createMany: ComplexCreateManyDistrictInputEnvelope
+  connect: [ComplexWhereUniqueInput!]
+}
+
+input ComplexCreateWithoutDistrictInput {
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  group: GroupCreateNestedOneWithoutComplexesInput!
+  city: CityCreateNestedOneWithoutComplexesInput!
+  buildings: BuildingCreateNestedManyWithoutComplexInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input GroupCreateNestedOneWithoutComplexesInput {
+  create: GroupCreateWithoutComplexesInput
+  connectOrCreate: GroupCreateOrConnectWithoutComplexesInput
+  connect: GroupWhereUniqueInput
+}
+
+input GroupCreateWithoutComplexesInput {
+  name: String!
+  regions: RegionCreateNestedManyWithoutGroupsInput
+  buildings: BuildingCreateNestedManyWithoutGroupInput
+  developers: DeveloperCreateNestedManyWithoutGroupInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input RegionCreateNestedManyWithoutGroupsInput {
+  create: [RegionCreateWithoutGroupsInput!]
+  connectOrCreate: [RegionCreateOrConnectWithoutGroupsInput!]
+  connect: [RegionWhereUniqueInput!]
+}
+
+input RegionCreateWithoutGroupsInput {
+  name: String!
+  cities: CityCreateNestedManyWithoutRegionInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityCreateNestedManyWithoutRegionInput {
+  create: [CityCreateWithoutRegionInput!]
+  connectOrCreate: [CityCreateOrConnectWithoutRegionInput!]
+  createMany: CityCreateManyRegionInputEnvelope
+  connect: [CityWhereUniqueInput!]
+}
+
+input CityCreateWithoutRegionInput {
+  name: String!
+  districts: DistrictCreateNestedManyWithoutCityInput
+  complexes: ComplexCreateNestedManyWithoutCityInput
+  buildings: BuildingCreateNestedManyWithoutCityInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DistrictCreateNestedManyWithoutCityInput {
+  create: [DistrictCreateWithoutCityInput!]
+  connectOrCreate: [DistrictCreateOrConnectWithoutCityInput!]
+  createMany: DistrictCreateManyCityInputEnvelope
+  connect: [DistrictWhereUniqueInput!]
+}
+
+input DistrictCreateOrConnectWithoutCityInput {
+  where: DistrictWhereUniqueInput!
+  create: DistrictCreateWithoutCityInput!
+}
+
+input DistrictWhereUniqueInput {
+  id: Int
+}
+
+input DistrictCreateManyCityInputEnvelope {
+  data: [DistrictCreateManyCityInput!]!
+  skipDuplicates: Boolean
+}
+
+input DistrictCreateManyCityInput {
+  id: Int
+  name: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexCreateNestedManyWithoutCityInput {
+  create: [ComplexCreateWithoutCityInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutCityInput!]
+  createMany: ComplexCreateManyCityInputEnvelope
+  connect: [ComplexWhereUniqueInput!]
+}
+
+input ComplexCreateWithoutCityInput {
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  group: GroupCreateNestedOneWithoutComplexesInput!
+  district: DistrictCreateNestedOneWithoutComplexesInput!
+  buildings: BuildingCreateNestedManyWithoutComplexInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DistrictCreateNestedOneWithoutComplexesInput {
+  create: DistrictCreateWithoutComplexesInput
+  connectOrCreate: DistrictCreateOrConnectWithoutComplexesInput
+  connect: DistrictWhereUniqueInput
+}
+
+input DistrictCreateWithoutComplexesInput {
+  name: String!
+  city: CityCreateNestedOneWithoutDistrictsInput!
+  buildings: BuildingCreateNestedManyWithoutDistrictInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityCreateNestedOneWithoutDistrictsInput {
+  create: CityCreateWithoutDistrictsInput
+  connectOrCreate: CityCreateOrConnectWithoutDistrictsInput
+  connect: CityWhereUniqueInput
+}
+
+input CityCreateWithoutDistrictsInput {
+  name: String!
+  region: RegionCreateNestedOneWithoutCitiesInput!
+  complexes: ComplexCreateNestedManyWithoutCityInput
+  buildings: BuildingCreateNestedManyWithoutCityInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input RegionCreateNestedOneWithoutCitiesInput {
+  create: RegionCreateWithoutCitiesInput
+  connectOrCreate: RegionCreateOrConnectWithoutCitiesInput
+  connect: RegionWhereUniqueInput
+}
+
+input RegionCreateWithoutCitiesInput {
+  name: String!
+  groups: GroupCreateNestedManyWithoutRegionsInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input GroupCreateNestedManyWithoutRegionsInput {
+  create: [GroupCreateWithoutRegionsInput!]
+  connectOrCreate: [GroupCreateOrConnectWithoutRegionsInput!]
+  connect: [GroupWhereUniqueInput!]
+}
+
+input GroupCreateWithoutRegionsInput {
+  name: String!
+  buildings: BuildingCreateNestedManyWithoutGroupInput
+  developers: DeveloperCreateNestedManyWithoutGroupInput
+  complexes: ComplexCreateNestedManyWithoutGroupInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingCreateNestedManyWithoutGroupInput {
+  create: [BuildingCreateWithoutGroupInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutGroupInput!]
+  createMany: BuildingCreateManyGroupInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input BuildingCreateWithoutGroupInput {
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  city: CityCreateNestedOneWithoutBuildingsInput!
+  district: DistrictCreateNestedOneWithoutBuildingsInput!
+  developer: DeveloperCreateNestedOneWithoutBuildingsInput!
+  complex: ComplexCreateNestedOneWithoutBuildingsInput!
+  sales: SaleCreateNestedManyWithoutBuildingInput
+  properties: PropertyCreateNestedManyWithoutBuildingInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityCreateNestedOneWithoutBuildingsInput {
+  create: CityCreateWithoutBuildingsInput
+  connectOrCreate: CityCreateOrConnectWithoutBuildingsInput
+  connect: CityWhereUniqueInput
+}
+
+input CityCreateWithoutBuildingsInput {
+  name: String!
+  region: RegionCreateNestedOneWithoutCitiesInput!
+  districts: DistrictCreateNestedManyWithoutCityInput
+  complexes: ComplexCreateNestedManyWithoutCityInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityCreateOrConnectWithoutBuildingsInput {
+  where: CityWhereUniqueInput!
+  create: CityCreateWithoutBuildingsInput!
+}
+
+input CityWhereUniqueInput {
+  id: Int
+  name: String
+}
+
+input DistrictCreateNestedOneWithoutBuildingsInput {
+  create: DistrictCreateWithoutBuildingsInput
+  connectOrCreate: DistrictCreateOrConnectWithoutBuildingsInput
+  connect: DistrictWhereUniqueInput
+}
+
+input DistrictCreateWithoutBuildingsInput {
+  name: String!
+  city: CityCreateNestedOneWithoutDistrictsInput!
+  complexes: ComplexCreateNestedManyWithoutDistrictInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DistrictCreateOrConnectWithoutBuildingsInput {
+  where: DistrictWhereUniqueInput!
+  create: DistrictCreateWithoutBuildingsInput!
+}
+
+input DeveloperCreateNestedOneWithoutBuildingsInput {
+  create: DeveloperCreateWithoutBuildingsInput
+  connectOrCreate: DeveloperCreateOrConnectWithoutBuildingsInput
+  connect: DeveloperWhereUniqueInput
+}
+
+input DeveloperCreateWithoutBuildingsInput {
+  name: String!
+  fullName: String!
+  legalAddress: String
+  actualAddress: String
+  inn: String!
+  kpp: String
+  ogrn: String
+  manager: String
+  website: String
+  phone: String
+  email: String
+  info: String
+  group: GroupCreateNestedOneWithoutDevelopersInput!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input GroupCreateNestedOneWithoutDevelopersInput {
+  create: GroupCreateWithoutDevelopersInput
+  connectOrCreate: GroupCreateOrConnectWithoutDevelopersInput
+  connect: GroupWhereUniqueInput
+}
+
+input GroupCreateWithoutDevelopersInput {
+  name: String!
+  regions: RegionCreateNestedManyWithoutGroupsInput
+  buildings: BuildingCreateNestedManyWithoutGroupInput
+  complexes: ComplexCreateNestedManyWithoutGroupInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexCreateNestedManyWithoutGroupInput {
+  create: [ComplexCreateWithoutGroupInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutGroupInput!]
+  createMany: ComplexCreateManyGroupInputEnvelope
+  connect: [ComplexWhereUniqueInput!]
+}
+
+input ComplexCreateWithoutGroupInput {
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  city: CityCreateNestedOneWithoutComplexesInput!
+  district: DistrictCreateNestedOneWithoutComplexesInput!
+  buildings: BuildingCreateNestedManyWithoutComplexInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityCreateNestedOneWithoutComplexesInput {
+  create: CityCreateWithoutComplexesInput
+  connectOrCreate: CityCreateOrConnectWithoutComplexesInput
+  connect: CityWhereUniqueInput
+}
+
+input CityCreateWithoutComplexesInput {
+  name: String!
+  region: RegionCreateNestedOneWithoutCitiesInput!
+  districts: DistrictCreateNestedManyWithoutCityInput
+  buildings: BuildingCreateNestedManyWithoutCityInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingCreateNestedManyWithoutCityInput {
+  create: [BuildingCreateWithoutCityInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutCityInput!]
+  createMany: BuildingCreateManyCityInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input BuildingCreateWithoutCityInput {
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  district: DistrictCreateNestedOneWithoutBuildingsInput!
+  developer: DeveloperCreateNestedOneWithoutBuildingsInput!
+  group: GroupCreateNestedOneWithoutBuildingsInput!
+  complex: ComplexCreateNestedOneWithoutBuildingsInput!
+  sales: SaleCreateNestedManyWithoutBuildingInput
+  properties: PropertyCreateNestedManyWithoutBuildingInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input GroupCreateNestedOneWithoutBuildingsInput {
+  create: GroupCreateWithoutBuildingsInput
+  connectOrCreate: GroupCreateOrConnectWithoutBuildingsInput
+  connect: GroupWhereUniqueInput
+}
+
+input GroupCreateWithoutBuildingsInput {
+  name: String!
+  regions: RegionCreateNestedManyWithoutGroupsInput
+  developers: DeveloperCreateNestedManyWithoutGroupInput
+  complexes: ComplexCreateNestedManyWithoutGroupInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DeveloperCreateNestedManyWithoutGroupInput {
+  create: [DeveloperCreateWithoutGroupInput!]
+  connectOrCreate: [DeveloperCreateOrConnectWithoutGroupInput!]
+  createMany: DeveloperCreateManyGroupInputEnvelope
+  connect: [DeveloperWhereUniqueInput!]
+}
+
+input DeveloperCreateWithoutGroupInput {
+  name: String!
+  fullName: String!
+  legalAddress: String
+  actualAddress: String
+  inn: String!
+  kpp: String
+  ogrn: String
+  manager: String
+  website: String
+  phone: String
+  email: String
+  info: String
+  buildings: BuildingCreateNestedManyWithoutDeveloperInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingCreateNestedManyWithoutDeveloperInput {
+  create: [BuildingCreateWithoutDeveloperInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDeveloperInput!]
+  createMany: BuildingCreateManyDeveloperInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input BuildingCreateWithoutDeveloperInput {
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  city: CityCreateNestedOneWithoutBuildingsInput!
+  district: DistrictCreateNestedOneWithoutBuildingsInput!
+  group: GroupCreateNestedOneWithoutBuildingsInput!
+  complex: ComplexCreateNestedOneWithoutBuildingsInput!
+  sales: SaleCreateNestedManyWithoutBuildingInput
+  properties: PropertyCreateNestedManyWithoutBuildingInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexCreateNestedOneWithoutBuildingsInput {
+  create: ComplexCreateWithoutBuildingsInput
+  connectOrCreate: ComplexCreateOrConnectWithoutBuildingsInput
+  connect: ComplexWhereUniqueInput
+}
+
+input ComplexCreateWithoutBuildingsInput {
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  group: GroupCreateNestedOneWithoutComplexesInput!
+  city: CityCreateNestedOneWithoutComplexesInput!
+  district: DistrictCreateNestedOneWithoutComplexesInput!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexCreateOrConnectWithoutBuildingsInput {
+  where: ComplexWhereUniqueInput!
+  create: ComplexCreateWithoutBuildingsInput!
+}
+
+input ComplexWhereUniqueInput {
+  id: Int
+  name: String
+}
+
+input SaleCreateNestedManyWithoutBuildingInput {
+  create: [SaleCreateWithoutBuildingInput!]
+  connectOrCreate: [SaleCreateOrConnectWithoutBuildingInput!]
+  createMany: SaleCreateManyBuildingInputEnvelope
+  connect: [SaleWhereUniqueInput!]
+}
+
+input SaleCreateWithoutBuildingInput {
+  month: Int!
+  year: Int!
+  amount: Int!
+  area: Float!
+  sum: Float!
+  propertyType: PropertyType!
+}
+
+input SaleCreateOrConnectWithoutBuildingInput {
+  where: SaleWhereUniqueInput!
+  create: SaleCreateWithoutBuildingInput!
+}
+
+input SaleWhereUniqueInput {
+  id: Int
+}
+
+input SaleCreateManyBuildingInputEnvelope {
+  data: [SaleCreateManyBuildingInput!]!
+  skipDuplicates: Boolean
+}
+
+input SaleCreateManyBuildingInput {
+  id: Int
+  month: Int!
+  year: Int!
+  amount: Int!
+  area: Float!
+  sum: Float!
+  propertyType: PropertyType!
+}
+
+input PropertyCreateNestedManyWithoutBuildingInput {
+  create: [PropertyCreateWithoutBuildingInput!]
+  connectOrCreate: [PropertyCreateOrConnectWithoutBuildingInput!]
+  createMany: PropertyCreateManyBuildingInputEnvelope
+  connect: [PropertyWhereUniqueInput!]
+}
+
+input PropertyCreateWithoutBuildingInput {
+  number: String!
+  floor: Int!
+  entrance: Int
+  totalArea: Float!
+  livingArea: Float
+  rooms: Int
+  wallHeight: Float
+  propertyType: PropertyType!
+}
+
+input PropertyCreateOrConnectWithoutBuildingInput {
+  where: PropertyWhereUniqueInput!
+  create: PropertyCreateWithoutBuildingInput!
+}
+
+input PropertyWhereUniqueInput {
+  id: Int
+}
+
+input PropertyCreateManyBuildingInputEnvelope {
+  data: [PropertyCreateManyBuildingInput!]!
+  skipDuplicates: Boolean
+}
+
+input PropertyCreateManyBuildingInput {
+  id: Int
+  number: String!
+  floor: Int!
+  entrance: Int
+  totalArea: Float!
+  livingArea: Float
+  rooms: Int
+  wallHeight: Float
+  propertyType: PropertyType!
+}
+
+input BuildingCreateOrConnectWithoutDeveloperInput {
+  where: BuildingWhereUniqueInput!
+  create: BuildingCreateWithoutDeveloperInput!
+}
+
+input BuildingWhereUniqueInput {
+  id: Int
+  name: String
+}
+
+input BuildingCreateManyDeveloperInputEnvelope {
+  data: [BuildingCreateManyDeveloperInput!]!
+  skipDuplicates: Boolean
+}
+
+input BuildingCreateManyDeveloperInput {
+  id: Int
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int!
+  districtId: Int!
+  groupId: Int!
+  complexId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DeveloperCreateOrConnectWithoutGroupInput {
+  where: DeveloperWhereUniqueInput!
+  create: DeveloperCreateWithoutGroupInput!
+}
+
+input DeveloperWhereUniqueInput {
+  id: Int
+  name: String
+  inn: String
+}
+
+input DeveloperCreateManyGroupInputEnvelope {
+  data: [DeveloperCreateManyGroupInput!]!
+  skipDuplicates: Boolean
+}
+
+input DeveloperCreateManyGroupInput {
+  id: Int
+  name: String!
+  fullName: String!
+  legalAddress: String
+  actualAddress: String
+  inn: String!
+  kpp: String
+  ogrn: String
+  manager: String
+  website: String
+  phone: String
+  email: String
+  info: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input GroupCreateOrConnectWithoutBuildingsInput {
+  where: GroupWhereUniqueInput!
+  create: GroupCreateWithoutBuildingsInput!
+}
+
+input GroupWhereUniqueInput {
+  id: Int
+  name: String
+}
+
+input BuildingCreateOrConnectWithoutCityInput {
+  where: BuildingWhereUniqueInput!
+  create: BuildingCreateWithoutCityInput!
+}
+
+input BuildingCreateManyCityInputEnvelope {
+  data: [BuildingCreateManyCityInput!]!
+  skipDuplicates: Boolean
+}
+
+input BuildingCreateManyCityInput {
+  id: Int
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  districtId: Int!
+  developerId: Int!
+  groupId: Int!
+  complexId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityCreateOrConnectWithoutComplexesInput {
+  where: CityWhereUniqueInput!
+  create: CityCreateWithoutComplexesInput!
+}
+
+input BuildingCreateNestedManyWithoutComplexInput {
+  create: [BuildingCreateWithoutComplexInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutComplexInput!]
+  createMany: BuildingCreateManyComplexInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input BuildingCreateWithoutComplexInput {
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  city: CityCreateNestedOneWithoutBuildingsInput!
+  district: DistrictCreateNestedOneWithoutBuildingsInput!
+  developer: DeveloperCreateNestedOneWithoutBuildingsInput!
+  group: GroupCreateNestedOneWithoutBuildingsInput!
+  sales: SaleCreateNestedManyWithoutBuildingInput
+  properties: PropertyCreateNestedManyWithoutBuildingInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingCreateOrConnectWithoutComplexInput {
+  where: BuildingWhereUniqueInput!
+  create: BuildingCreateWithoutComplexInput!
+}
+
+input BuildingCreateManyComplexInputEnvelope {
+  data: [BuildingCreateManyComplexInput!]!
+  skipDuplicates: Boolean
+}
+
+input BuildingCreateManyComplexInput {
+  id: Int
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int!
+  districtId: Int!
+  developerId: Int!
+  groupId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexCreateOrConnectWithoutGroupInput {
+  where: ComplexWhereUniqueInput!
+  create: ComplexCreateWithoutGroupInput!
+}
+
+input ComplexCreateManyGroupInputEnvelope {
+  data: [ComplexCreateManyGroupInput!]!
+  skipDuplicates: Boolean
+}
+
+input ComplexCreateManyGroupInput {
+  id: Int
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int!
+  districtId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input GroupCreateOrConnectWithoutDevelopersInput {
+  where: GroupWhereUniqueInput!
+  create: GroupCreateWithoutDevelopersInput!
+}
+
+input DeveloperCreateOrConnectWithoutBuildingsInput {
+  where: DeveloperWhereUniqueInput!
+  create: DeveloperCreateWithoutBuildingsInput!
+}
+
+input BuildingCreateOrConnectWithoutGroupInput {
+  where: BuildingWhereUniqueInput!
+  create: BuildingCreateWithoutGroupInput!
+}
+
+input BuildingCreateManyGroupInputEnvelope {
+  data: [BuildingCreateManyGroupInput!]!
+  skipDuplicates: Boolean
+}
+
+input BuildingCreateManyGroupInput {
+  id: Int
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int!
+  districtId: Int!
+  developerId: Int!
+  complexId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input GroupCreateOrConnectWithoutRegionsInput {
+  where: GroupWhereUniqueInput!
+  create: GroupCreateWithoutRegionsInput!
+}
+
+input RegionCreateOrConnectWithoutCitiesInput {
+  where: RegionWhereUniqueInput!
+  create: RegionCreateWithoutCitiesInput!
+}
+
+input RegionWhereUniqueInput {
+  id: Int
+  name: String
+}
+
+input CityCreateOrConnectWithoutDistrictsInput {
+  where: CityWhereUniqueInput!
+  create: CityCreateWithoutDistrictsInput!
+}
+
+input BuildingCreateNestedManyWithoutDistrictInput {
+  create: [BuildingCreateWithoutDistrictInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDistrictInput!]
+  createMany: BuildingCreateManyDistrictInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input BuildingCreateWithoutDistrictInput {
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  city: CityCreateNestedOneWithoutBuildingsInput!
+  developer: DeveloperCreateNestedOneWithoutBuildingsInput!
+  group: GroupCreateNestedOneWithoutBuildingsInput!
+  complex: ComplexCreateNestedOneWithoutBuildingsInput!
+  sales: SaleCreateNestedManyWithoutBuildingInput
+  properties: PropertyCreateNestedManyWithoutBuildingInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingCreateOrConnectWithoutDistrictInput {
+  where: BuildingWhereUniqueInput!
+  create: BuildingCreateWithoutDistrictInput!
+}
+
+input BuildingCreateManyDistrictInputEnvelope {
+  data: [BuildingCreateManyDistrictInput!]!
+  skipDuplicates: Boolean
+}
+
+input BuildingCreateManyDistrictInput {
+  id: Int
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int!
+  developerId: Int!
+  groupId: Int!
+  complexId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DistrictCreateOrConnectWithoutComplexesInput {
+  where: DistrictWhereUniqueInput!
+  create: DistrictCreateWithoutComplexesInput!
+}
+
+input ComplexCreateOrConnectWithoutCityInput {
+  where: ComplexWhereUniqueInput!
+  create: ComplexCreateWithoutCityInput!
+}
+
+input ComplexCreateManyCityInputEnvelope {
+  data: [ComplexCreateManyCityInput!]!
+  skipDuplicates: Boolean
+}
+
+input ComplexCreateManyCityInput {
+  id: Int
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  groupId: Int!
+  districtId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityCreateOrConnectWithoutRegionInput {
+  where: CityWhereUniqueInput!
+  create: CityCreateWithoutRegionInput!
+}
+
+input CityCreateManyRegionInputEnvelope {
+  data: [CityCreateManyRegionInput!]!
+  skipDuplicates: Boolean
+}
+
+input CityCreateManyRegionInput {
+  id: Int
+  name: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input RegionCreateOrConnectWithoutGroupsInput {
+  where: RegionWhereUniqueInput!
+  create: RegionCreateWithoutGroupsInput!
+}
+
+input GroupCreateOrConnectWithoutComplexesInput {
+  where: GroupWhereUniqueInput!
+  create: GroupCreateWithoutComplexesInput!
+}
+
+input ComplexCreateOrConnectWithoutDistrictInput {
+  where: ComplexWhereUniqueInput!
+  create: ComplexCreateWithoutDistrictInput!
+}
+
+input ComplexCreateManyDistrictInputEnvelope {
+  data: [ComplexCreateManyDistrictInput!]!
+  skipDuplicates: Boolean
+}
+
+input ComplexCreateManyDistrictInput {
+  id: Int
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  groupId: Int!
+  cityId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexUncheckedCreateNestedManyWithoutCityInput {
+  create: [ComplexCreateWithoutCityInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutCityInput!]
+  createMany: ComplexCreateManyCityInputEnvelope
+  connect: [ComplexWhereUniqueInput!]
+}
+
+input BuildingUncheckedCreateNestedManyWithoutCityInput {
+  create: [BuildingCreateWithoutCityInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutCityInput!]
+  createMany: BuildingCreateManyCityInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input CityUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  regionId: IntFieldUpdateOperationsInput
+  districts: DistrictUncheckedUpdateManyWithoutCityNestedInput
+  complexes: ComplexUncheckedUpdateManyWithoutCityNestedInput
+  buildings: BuildingUncheckedUpdateManyWithoutCityNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input IntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input DistrictUncheckedUpdateManyWithoutCityNestedInput {
+  create: [DistrictCreateWithoutCityInput!]
+  connectOrCreate: [DistrictCreateOrConnectWithoutCityInput!]
+  upsert: [DistrictUpsertWithWhereUniqueWithoutCityInput!]
+  createMany: DistrictCreateManyCityInputEnvelope
+  set: [DistrictWhereUniqueInput!]
+  disconnect: [DistrictWhereUniqueInput!]
+  delete: [DistrictWhereUniqueInput!]
+  connect: [DistrictWhereUniqueInput!]
+  update: [DistrictUpdateWithWhereUniqueWithoutCityInput!]
+  updateMany: [DistrictUpdateManyWithWhereWithoutCityInput!]
+  deleteMany: [DistrictScalarWhereInput!]
+}
+
+input DistrictUpsertWithWhereUniqueWithoutCityInput {
+  where: DistrictWhereUniqueInput!
+  update: DistrictUpdateWithoutCityInput!
+  create: DistrictCreateWithoutCityInput!
+}
+
+input DistrictUpdateWithoutCityInput {
+  name: StringFieldUpdateOperationsInput
+  complexes: ComplexUpdateManyWithoutDistrictNestedInput
+  buildings: BuildingUpdateManyWithoutDistrictNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ComplexUpdateManyWithoutDistrictNestedInput {
+  create: [ComplexCreateWithoutDistrictInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutDistrictInput!]
+  upsert: [ComplexUpsertWithWhereUniqueWithoutDistrictInput!]
+  createMany: ComplexCreateManyDistrictInputEnvelope
+  set: [ComplexWhereUniqueInput!]
+  disconnect: [ComplexWhereUniqueInput!]
+  delete: [ComplexWhereUniqueInput!]
+  connect: [ComplexWhereUniqueInput!]
+  update: [ComplexUpdateWithWhereUniqueWithoutDistrictInput!]
+  updateMany: [ComplexUpdateManyWithWhereWithoutDistrictInput!]
+  deleteMany: [ComplexScalarWhereInput!]
+}
+
+input ComplexUpsertWithWhereUniqueWithoutDistrictInput {
+  where: ComplexWhereUniqueInput!
+  update: ComplexUpdateWithoutDistrictInput!
+  create: ComplexCreateWithoutDistrictInput!
+}
+
+input ComplexUpdateWithoutDistrictInput {
+  name: StringFieldUpdateOperationsInput
+  shortName: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  group: GroupUpdateOneRequiredWithoutComplexesNestedInput
+  city: CityUpdateOneRequiredWithoutComplexesNestedInput
+  buildings: BuildingUpdateManyWithoutComplexNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
+input NullableIntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
+}
+
+input GroupUpdateOneRequiredWithoutComplexesNestedInput {
+  create: GroupCreateWithoutComplexesInput
+  connectOrCreate: GroupCreateOrConnectWithoutComplexesInput
+  upsert: GroupUpsertWithoutComplexesInput
+  connect: GroupWhereUniqueInput
+  update: GroupUpdateWithoutComplexesInput
+}
+
+input GroupUpsertWithoutComplexesInput {
+  update: GroupUpdateWithoutComplexesInput!
+  create: GroupCreateWithoutComplexesInput!
+}
+
+input GroupUpdateWithoutComplexesInput {
+  name: StringFieldUpdateOperationsInput
+  regions: RegionUpdateManyWithoutGroupsNestedInput
+  buildings: BuildingUpdateManyWithoutGroupNestedInput
+  developers: DeveloperUpdateManyWithoutGroupNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input RegionUpdateManyWithoutGroupsNestedInput {
+  create: [RegionCreateWithoutGroupsInput!]
+  connectOrCreate: [RegionCreateOrConnectWithoutGroupsInput!]
+  upsert: [RegionUpsertWithWhereUniqueWithoutGroupsInput!]
+  set: [RegionWhereUniqueInput!]
+  disconnect: [RegionWhereUniqueInput!]
+  delete: [RegionWhereUniqueInput!]
+  connect: [RegionWhereUniqueInput!]
+  update: [RegionUpdateWithWhereUniqueWithoutGroupsInput!]
+  updateMany: [RegionUpdateManyWithWhereWithoutGroupsInput!]
+  deleteMany: [RegionScalarWhereInput!]
+}
+
+input RegionUpsertWithWhereUniqueWithoutGroupsInput {
+  where: RegionWhereUniqueInput!
+  update: RegionUpdateWithoutGroupsInput!
+  create: RegionCreateWithoutGroupsInput!
+}
+
+input RegionUpdateWithoutGroupsInput {
+  name: StringFieldUpdateOperationsInput
+  cities: CityUpdateManyWithoutRegionNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CityUpdateManyWithoutRegionNestedInput {
+  create: [CityCreateWithoutRegionInput!]
+  connectOrCreate: [CityCreateOrConnectWithoutRegionInput!]
+  upsert: [CityUpsertWithWhereUniqueWithoutRegionInput!]
+  createMany: CityCreateManyRegionInputEnvelope
+  set: [CityWhereUniqueInput!]
+  disconnect: [CityWhereUniqueInput!]
+  delete: [CityWhereUniqueInput!]
+  connect: [CityWhereUniqueInput!]
+  update: [CityUpdateWithWhereUniqueWithoutRegionInput!]
+  updateMany: [CityUpdateManyWithWhereWithoutRegionInput!]
+  deleteMany: [CityScalarWhereInput!]
+}
+
+input CityUpsertWithWhereUniqueWithoutRegionInput {
+  where: CityWhereUniqueInput!
+  update: CityUpdateWithoutRegionInput!
+  create: CityCreateWithoutRegionInput!
+}
+
+input CityUpdateWithoutRegionInput {
+  name: StringFieldUpdateOperationsInput
+  districts: DistrictUpdateManyWithoutCityNestedInput
+  complexes: ComplexUpdateManyWithoutCityNestedInput
+  buildings: BuildingUpdateManyWithoutCityNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DistrictUpdateManyWithoutCityNestedInput {
+  create: [DistrictCreateWithoutCityInput!]
+  connectOrCreate: [DistrictCreateOrConnectWithoutCityInput!]
+  upsert: [DistrictUpsertWithWhereUniqueWithoutCityInput!]
+  createMany: DistrictCreateManyCityInputEnvelope
+  set: [DistrictWhereUniqueInput!]
+  disconnect: [DistrictWhereUniqueInput!]
+  delete: [DistrictWhereUniqueInput!]
+  connect: [DistrictWhereUniqueInput!]
+  update: [DistrictUpdateWithWhereUniqueWithoutCityInput!]
+  updateMany: [DistrictUpdateManyWithWhereWithoutCityInput!]
+  deleteMany: [DistrictScalarWhereInput!]
+}
+
+input DistrictUpdateWithWhereUniqueWithoutCityInput {
+  where: DistrictWhereUniqueInput!
+  data: DistrictUpdateWithoutCityInput!
+}
+
+input DistrictUpdateManyWithWhereWithoutCityInput {
+  where: DistrictScalarWhereInput!
+  data: DistrictUpdateManyMutationInput!
+}
+
+input DistrictScalarWhereInput {
+  AND: [DistrictScalarWhereInput!]
+  OR: [DistrictScalarWhereInput!]
+  NOT: [DistrictScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  cityId: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input DistrictUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input ComplexUpdateManyWithoutCityNestedInput {
+  create: [ComplexCreateWithoutCityInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutCityInput!]
+  upsert: [ComplexUpsertWithWhereUniqueWithoutCityInput!]
+  createMany: ComplexCreateManyCityInputEnvelope
+  set: [ComplexWhereUniqueInput!]
+  disconnect: [ComplexWhereUniqueInput!]
+  delete: [ComplexWhereUniqueInput!]
+  connect: [ComplexWhereUniqueInput!]
+  update: [ComplexUpdateWithWhereUniqueWithoutCityInput!]
+  updateMany: [ComplexUpdateManyWithWhereWithoutCityInput!]
+  deleteMany: [ComplexScalarWhereInput!]
+}
+
+input ComplexUpsertWithWhereUniqueWithoutCityInput {
+  where: ComplexWhereUniqueInput!
+  update: ComplexUpdateWithoutCityInput!
+  create: ComplexCreateWithoutCityInput!
+}
+
+input ComplexUpdateWithoutCityInput {
+  name: StringFieldUpdateOperationsInput
+  shortName: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  group: GroupUpdateOneRequiredWithoutComplexesNestedInput
+  district: DistrictUpdateOneRequiredWithoutComplexesNestedInput
+  buildings: BuildingUpdateManyWithoutComplexNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DistrictUpdateOneRequiredWithoutComplexesNestedInput {
+  create: DistrictCreateWithoutComplexesInput
+  connectOrCreate: DistrictCreateOrConnectWithoutComplexesInput
+  upsert: DistrictUpsertWithoutComplexesInput
+  connect: DistrictWhereUniqueInput
+  update: DistrictUpdateWithoutComplexesInput
+}
+
+input DistrictUpsertWithoutComplexesInput {
+  update: DistrictUpdateWithoutComplexesInput!
+  create: DistrictCreateWithoutComplexesInput!
+}
+
+input DistrictUpdateWithoutComplexesInput {
+  name: StringFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutDistrictsNestedInput
+  buildings: BuildingUpdateManyWithoutDistrictNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CityUpdateOneRequiredWithoutDistrictsNestedInput {
+  create: CityCreateWithoutDistrictsInput
+  connectOrCreate: CityCreateOrConnectWithoutDistrictsInput
+  upsert: CityUpsertWithoutDistrictsInput
+  connect: CityWhereUniqueInput
+  update: CityUpdateWithoutDistrictsInput
+}
+
+input CityUpsertWithoutDistrictsInput {
+  update: CityUpdateWithoutDistrictsInput!
+  create: CityCreateWithoutDistrictsInput!
+}
+
+input CityUpdateWithoutDistrictsInput {
+  name: StringFieldUpdateOperationsInput
+  region: RegionUpdateOneRequiredWithoutCitiesNestedInput
+  complexes: ComplexUpdateManyWithoutCityNestedInput
+  buildings: BuildingUpdateManyWithoutCityNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input RegionUpdateOneRequiredWithoutCitiesNestedInput {
+  create: RegionCreateWithoutCitiesInput
+  connectOrCreate: RegionCreateOrConnectWithoutCitiesInput
+  upsert: RegionUpsertWithoutCitiesInput
+  connect: RegionWhereUniqueInput
+  update: RegionUpdateWithoutCitiesInput
+}
+
+input RegionUpsertWithoutCitiesInput {
+  update: RegionUpdateWithoutCitiesInput!
+  create: RegionCreateWithoutCitiesInput!
+}
+
+input RegionUpdateWithoutCitiesInput {
+  name: StringFieldUpdateOperationsInput
+  groups: GroupUpdateManyWithoutRegionsNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input GroupUpdateManyWithoutRegionsNestedInput {
+  create: [GroupCreateWithoutRegionsInput!]
+  connectOrCreate: [GroupCreateOrConnectWithoutRegionsInput!]
+  upsert: [GroupUpsertWithWhereUniqueWithoutRegionsInput!]
+  set: [GroupWhereUniqueInput!]
+  disconnect: [GroupWhereUniqueInput!]
+  delete: [GroupWhereUniqueInput!]
+  connect: [GroupWhereUniqueInput!]
+  update: [GroupUpdateWithWhereUniqueWithoutRegionsInput!]
+  updateMany: [GroupUpdateManyWithWhereWithoutRegionsInput!]
+  deleteMany: [GroupScalarWhereInput!]
+}
+
+input GroupUpsertWithWhereUniqueWithoutRegionsInput {
+  where: GroupWhereUniqueInput!
+  update: GroupUpdateWithoutRegionsInput!
+  create: GroupCreateWithoutRegionsInput!
+}
+
+input GroupUpdateWithoutRegionsInput {
+  name: StringFieldUpdateOperationsInput
+  buildings: BuildingUpdateManyWithoutGroupNestedInput
+  developers: DeveloperUpdateManyWithoutGroupNestedInput
+  complexes: ComplexUpdateManyWithoutGroupNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateManyWithoutGroupNestedInput {
+  create: [BuildingCreateWithoutGroupInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutGroupInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutGroupInput!]
+  createMany: BuildingCreateManyGroupInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutGroupInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutGroupInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input BuildingUpsertWithWhereUniqueWithoutGroupInput {
+  where: BuildingWhereUniqueInput!
+  update: BuildingUpdateWithoutGroupInput!
+  create: BuildingCreateWithoutGroupInput!
+}
+
+input BuildingUpdateWithoutGroupInput {
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutBuildingsNestedInput
+  district: DistrictUpdateOneRequiredWithoutBuildingsNestedInput
+  developer: DeveloperUpdateOneRequiredWithoutBuildingsNestedInput
+  complex: ComplexUpdateOneRequiredWithoutBuildingsNestedInput
+  sales: SaleUpdateManyWithoutBuildingNestedInput
+  properties: PropertyUpdateManyWithoutBuildingNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input NullableFloatFieldUpdateOperationsInput {
+  set: Float
+  increment: Float
+  decrement: Float
+  multiply: Float
+  divide: Float
+}
+
+input NullableEnumPropertyClassFieldUpdateOperationsInput {
+  set: PropertyClass
+}
+
+input NullableEnumDecorTypeFieldUpdateOperationsInput {
+  set: DecorType
+}
+
+input NullableEnumWallMaterialFieldUpdateOperationsInput {
+  set: WallMaterial
+}
+
+input CityUpdateOneRequiredWithoutBuildingsNestedInput {
+  create: CityCreateWithoutBuildingsInput
+  connectOrCreate: CityCreateOrConnectWithoutBuildingsInput
+  upsert: CityUpsertWithoutBuildingsInput
+  connect: CityWhereUniqueInput
+  update: CityUpdateWithoutBuildingsInput
+}
+
+input CityUpsertWithoutBuildingsInput {
+  update: CityUpdateWithoutBuildingsInput!
+  create: CityCreateWithoutBuildingsInput!
+}
+
+input CityUpdateWithoutBuildingsInput {
+  name: StringFieldUpdateOperationsInput
+  region: RegionUpdateOneRequiredWithoutCitiesNestedInput
+  districts: DistrictUpdateManyWithoutCityNestedInput
+  complexes: ComplexUpdateManyWithoutCityNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DistrictUpdateOneRequiredWithoutBuildingsNestedInput {
+  create: DistrictCreateWithoutBuildingsInput
+  connectOrCreate: DistrictCreateOrConnectWithoutBuildingsInput
+  upsert: DistrictUpsertWithoutBuildingsInput
+  connect: DistrictWhereUniqueInput
+  update: DistrictUpdateWithoutBuildingsInput
+}
+
+input DistrictUpsertWithoutBuildingsInput {
+  update: DistrictUpdateWithoutBuildingsInput!
+  create: DistrictCreateWithoutBuildingsInput!
+}
+
+input DistrictUpdateWithoutBuildingsInput {
+  name: StringFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutDistrictsNestedInput
+  complexes: ComplexUpdateManyWithoutDistrictNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DeveloperUpdateOneRequiredWithoutBuildingsNestedInput {
+  create: DeveloperCreateWithoutBuildingsInput
+  connectOrCreate: DeveloperCreateOrConnectWithoutBuildingsInput
+  upsert: DeveloperUpsertWithoutBuildingsInput
+  connect: DeveloperWhereUniqueInput
+  update: DeveloperUpdateWithoutBuildingsInput
+}
+
+input DeveloperUpsertWithoutBuildingsInput {
+  update: DeveloperUpdateWithoutBuildingsInput!
+  create: DeveloperCreateWithoutBuildingsInput!
+}
+
+input DeveloperUpdateWithoutBuildingsInput {
+  name: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  legalAddress: NullableStringFieldUpdateOperationsInput
+  actualAddress: NullableStringFieldUpdateOperationsInput
+  inn: StringFieldUpdateOperationsInput
+  kpp: NullableStringFieldUpdateOperationsInput
+  ogrn: NullableStringFieldUpdateOperationsInput
+  manager: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  phone: NullableStringFieldUpdateOperationsInput
+  email: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  group: GroupUpdateOneRequiredWithoutDevelopersNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input GroupUpdateOneRequiredWithoutDevelopersNestedInput {
+  create: GroupCreateWithoutDevelopersInput
+  connectOrCreate: GroupCreateOrConnectWithoutDevelopersInput
+  upsert: GroupUpsertWithoutDevelopersInput
+  connect: GroupWhereUniqueInput
+  update: GroupUpdateWithoutDevelopersInput
+}
+
+input GroupUpsertWithoutDevelopersInput {
+  update: GroupUpdateWithoutDevelopersInput!
+  create: GroupCreateWithoutDevelopersInput!
+}
+
+input GroupUpdateWithoutDevelopersInput {
+  name: StringFieldUpdateOperationsInput
+  regions: RegionUpdateManyWithoutGroupsNestedInput
+  buildings: BuildingUpdateManyWithoutGroupNestedInput
+  complexes: ComplexUpdateManyWithoutGroupNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ComplexUpdateManyWithoutGroupNestedInput {
+  create: [ComplexCreateWithoutGroupInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutGroupInput!]
+  upsert: [ComplexUpsertWithWhereUniqueWithoutGroupInput!]
+  createMany: ComplexCreateManyGroupInputEnvelope
+  set: [ComplexWhereUniqueInput!]
+  disconnect: [ComplexWhereUniqueInput!]
+  delete: [ComplexWhereUniqueInput!]
+  connect: [ComplexWhereUniqueInput!]
+  update: [ComplexUpdateWithWhereUniqueWithoutGroupInput!]
+  updateMany: [ComplexUpdateManyWithWhereWithoutGroupInput!]
+  deleteMany: [ComplexScalarWhereInput!]
+}
+
+input ComplexUpsertWithWhereUniqueWithoutGroupInput {
+  where: ComplexWhereUniqueInput!
+  update: ComplexUpdateWithoutGroupInput!
+  create: ComplexCreateWithoutGroupInput!
+}
+
+input ComplexUpdateWithoutGroupInput {
+  name: StringFieldUpdateOperationsInput
+  shortName: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutComplexesNestedInput
+  district: DistrictUpdateOneRequiredWithoutComplexesNestedInput
+  buildings: BuildingUpdateManyWithoutComplexNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CityUpdateOneRequiredWithoutComplexesNestedInput {
+  create: CityCreateWithoutComplexesInput
+  connectOrCreate: CityCreateOrConnectWithoutComplexesInput
+  upsert: CityUpsertWithoutComplexesInput
+  connect: CityWhereUniqueInput
+  update: CityUpdateWithoutComplexesInput
+}
+
+input CityUpsertWithoutComplexesInput {
+  update: CityUpdateWithoutComplexesInput!
+  create: CityCreateWithoutComplexesInput!
+}
+
+input CityUpdateWithoutComplexesInput {
+  name: StringFieldUpdateOperationsInput
+  region: RegionUpdateOneRequiredWithoutCitiesNestedInput
+  districts: DistrictUpdateManyWithoutCityNestedInput
+  buildings: BuildingUpdateManyWithoutCityNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateManyWithoutCityNestedInput {
+  create: [BuildingCreateWithoutCityInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutCityInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutCityInput!]
+  createMany: BuildingCreateManyCityInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutCityInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutCityInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input BuildingUpsertWithWhereUniqueWithoutCityInput {
+  where: BuildingWhereUniqueInput!
+  update: BuildingUpdateWithoutCityInput!
+  create: BuildingCreateWithoutCityInput!
+}
+
+input BuildingUpdateWithoutCityInput {
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  district: DistrictUpdateOneRequiredWithoutBuildingsNestedInput
+  developer: DeveloperUpdateOneRequiredWithoutBuildingsNestedInput
+  group: GroupUpdateOneRequiredWithoutBuildingsNestedInput
+  complex: ComplexUpdateOneRequiredWithoutBuildingsNestedInput
+  sales: SaleUpdateManyWithoutBuildingNestedInput
+  properties: PropertyUpdateManyWithoutBuildingNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input GroupUpdateOneRequiredWithoutBuildingsNestedInput {
+  create: GroupCreateWithoutBuildingsInput
+  connectOrCreate: GroupCreateOrConnectWithoutBuildingsInput
+  upsert: GroupUpsertWithoutBuildingsInput
+  connect: GroupWhereUniqueInput
+  update: GroupUpdateWithoutBuildingsInput
+}
+
+input GroupUpsertWithoutBuildingsInput {
+  update: GroupUpdateWithoutBuildingsInput!
+  create: GroupCreateWithoutBuildingsInput!
+}
+
+input GroupUpdateWithoutBuildingsInput {
+  name: StringFieldUpdateOperationsInput
+  regions: RegionUpdateManyWithoutGroupsNestedInput
+  developers: DeveloperUpdateManyWithoutGroupNestedInput
+  complexes: ComplexUpdateManyWithoutGroupNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DeveloperUpdateManyWithoutGroupNestedInput {
+  create: [DeveloperCreateWithoutGroupInput!]
+  connectOrCreate: [DeveloperCreateOrConnectWithoutGroupInput!]
+  upsert: [DeveloperUpsertWithWhereUniqueWithoutGroupInput!]
+  createMany: DeveloperCreateManyGroupInputEnvelope
+  set: [DeveloperWhereUniqueInput!]
+  disconnect: [DeveloperWhereUniqueInput!]
+  delete: [DeveloperWhereUniqueInput!]
+  connect: [DeveloperWhereUniqueInput!]
+  update: [DeveloperUpdateWithWhereUniqueWithoutGroupInput!]
+  updateMany: [DeveloperUpdateManyWithWhereWithoutGroupInput!]
+  deleteMany: [DeveloperScalarWhereInput!]
+}
+
+input DeveloperUpsertWithWhereUniqueWithoutGroupInput {
+  where: DeveloperWhereUniqueInput!
+  update: DeveloperUpdateWithoutGroupInput!
+  create: DeveloperCreateWithoutGroupInput!
+}
+
+input DeveloperUpdateWithoutGroupInput {
+  name: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  legalAddress: NullableStringFieldUpdateOperationsInput
+  actualAddress: NullableStringFieldUpdateOperationsInput
+  inn: StringFieldUpdateOperationsInput
+  kpp: NullableStringFieldUpdateOperationsInput
+  ogrn: NullableStringFieldUpdateOperationsInput
+  manager: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  phone: NullableStringFieldUpdateOperationsInput
+  email: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  buildings: BuildingUpdateManyWithoutDeveloperNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateManyWithoutDeveloperNestedInput {
+  create: [BuildingCreateWithoutDeveloperInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDeveloperInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutDeveloperInput!]
+  createMany: BuildingCreateManyDeveloperInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutDeveloperInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutDeveloperInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input BuildingUpsertWithWhereUniqueWithoutDeveloperInput {
+  where: BuildingWhereUniqueInput!
+  update: BuildingUpdateWithoutDeveloperInput!
+  create: BuildingCreateWithoutDeveloperInput!
+}
+
+input BuildingUpdateWithoutDeveloperInput {
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutBuildingsNestedInput
+  district: DistrictUpdateOneRequiredWithoutBuildingsNestedInput
+  group: GroupUpdateOneRequiredWithoutBuildingsNestedInput
+  complex: ComplexUpdateOneRequiredWithoutBuildingsNestedInput
+  sales: SaleUpdateManyWithoutBuildingNestedInput
+  properties: PropertyUpdateManyWithoutBuildingNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ComplexUpdateOneRequiredWithoutBuildingsNestedInput {
+  create: ComplexCreateWithoutBuildingsInput
+  connectOrCreate: ComplexCreateOrConnectWithoutBuildingsInput
+  upsert: ComplexUpsertWithoutBuildingsInput
+  connect: ComplexWhereUniqueInput
+  update: ComplexUpdateWithoutBuildingsInput
+}
+
+input ComplexUpsertWithoutBuildingsInput {
+  update: ComplexUpdateWithoutBuildingsInput!
+  create: ComplexCreateWithoutBuildingsInput!
+}
+
+input ComplexUpdateWithoutBuildingsInput {
+  name: StringFieldUpdateOperationsInput
+  shortName: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  group: GroupUpdateOneRequiredWithoutComplexesNestedInput
+  city: CityUpdateOneRequiredWithoutComplexesNestedInput
+  district: DistrictUpdateOneRequiredWithoutComplexesNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input SaleUpdateManyWithoutBuildingNestedInput {
+  create: [SaleCreateWithoutBuildingInput!]
+  connectOrCreate: [SaleCreateOrConnectWithoutBuildingInput!]
+  upsert: [SaleUpsertWithWhereUniqueWithoutBuildingInput!]
+  createMany: SaleCreateManyBuildingInputEnvelope
+  set: [SaleWhereUniqueInput!]
+  disconnect: [SaleWhereUniqueInput!]
+  delete: [SaleWhereUniqueInput!]
+  connect: [SaleWhereUniqueInput!]
+  update: [SaleUpdateWithWhereUniqueWithoutBuildingInput!]
+  updateMany: [SaleUpdateManyWithWhereWithoutBuildingInput!]
+  deleteMany: [SaleScalarWhereInput!]
+}
+
+input SaleUpsertWithWhereUniqueWithoutBuildingInput {
+  where: SaleWhereUniqueInput!
+  update: SaleUpdateWithoutBuildingInput!
+  create: SaleCreateWithoutBuildingInput!
+}
+
+input SaleUpdateWithoutBuildingInput {
+  month: IntFieldUpdateOperationsInput
+  year: IntFieldUpdateOperationsInput
+  amount: IntFieldUpdateOperationsInput
+  area: FloatFieldUpdateOperationsInput
+  sum: FloatFieldUpdateOperationsInput
+  propertyType: EnumPropertyTypeFieldUpdateOperationsInput
+}
+
+input FloatFieldUpdateOperationsInput {
+  set: Float
+  increment: Float
+  decrement: Float
+  multiply: Float
+  divide: Float
+}
+
+input EnumPropertyTypeFieldUpdateOperationsInput {
+  set: PropertyType
+}
+
+input SaleUpdateWithWhereUniqueWithoutBuildingInput {
+  where: SaleWhereUniqueInput!
+  data: SaleUpdateWithoutBuildingInput!
+}
+
+input SaleUpdateManyWithWhereWithoutBuildingInput {
+  where: SaleScalarWhereInput!
+  data: SaleUpdateManyMutationInput!
+}
+
+input SaleScalarWhereInput {
+  AND: [SaleScalarWhereInput!]
+  OR: [SaleScalarWhereInput!]
+  NOT: [SaleScalarWhereInput!]
+  id: IntFilter
+  month: IntFilter
+  year: IntFilter
+  amount: IntFilter
+  area: FloatFilter
+  sum: FloatFilter
+  propertyType: EnumPropertyTypeFilter
+  buildingId: IntFilter
+}
+
+input FloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input NestedFloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input EnumPropertyTypeFilter {
+  equals: PropertyType
+  in: [PropertyType!]
+  notIn: [PropertyType!]
+  not: NestedEnumPropertyTypeFilter
+}
+
+input NestedEnumPropertyTypeFilter {
+  equals: PropertyType
+  in: [PropertyType!]
+  notIn: [PropertyType!]
+  not: NestedEnumPropertyTypeFilter
+}
+
+input SaleUpdateManyMutationInput {
+  month: IntFieldUpdateOperationsInput
+  year: IntFieldUpdateOperationsInput
+  amount: IntFieldUpdateOperationsInput
+  area: FloatFieldUpdateOperationsInput
+  sum: FloatFieldUpdateOperationsInput
+  propertyType: EnumPropertyTypeFieldUpdateOperationsInput
+}
+
+input PropertyUpdateManyWithoutBuildingNestedInput {
+  create: [PropertyCreateWithoutBuildingInput!]
+  connectOrCreate: [PropertyCreateOrConnectWithoutBuildingInput!]
+  upsert: [PropertyUpsertWithWhereUniqueWithoutBuildingInput!]
+  createMany: PropertyCreateManyBuildingInputEnvelope
+  set: [PropertyWhereUniqueInput!]
+  disconnect: [PropertyWhereUniqueInput!]
+  delete: [PropertyWhereUniqueInput!]
+  connect: [PropertyWhereUniqueInput!]
+  update: [PropertyUpdateWithWhereUniqueWithoutBuildingInput!]
+  updateMany: [PropertyUpdateManyWithWhereWithoutBuildingInput!]
+  deleteMany: [PropertyScalarWhereInput!]
+}
+
+input PropertyUpsertWithWhereUniqueWithoutBuildingInput {
+  where: PropertyWhereUniqueInput!
+  update: PropertyUpdateWithoutBuildingInput!
+  create: PropertyCreateWithoutBuildingInput!
+}
+
+input PropertyUpdateWithoutBuildingInput {
+  number: StringFieldUpdateOperationsInput
+  floor: IntFieldUpdateOperationsInput
+  entrance: NullableIntFieldUpdateOperationsInput
+  totalArea: FloatFieldUpdateOperationsInput
+  livingArea: NullableFloatFieldUpdateOperationsInput
+  rooms: NullableIntFieldUpdateOperationsInput
+  wallHeight: NullableFloatFieldUpdateOperationsInput
+  propertyType: EnumPropertyTypeFieldUpdateOperationsInput
+}
+
+input PropertyUpdateWithWhereUniqueWithoutBuildingInput {
+  where: PropertyWhereUniqueInput!
+  data: PropertyUpdateWithoutBuildingInput!
+}
+
+input PropertyUpdateManyWithWhereWithoutBuildingInput {
+  where: PropertyScalarWhereInput!
+  data: PropertyUpdateManyMutationInput!
+}
+
+input PropertyScalarWhereInput {
+  AND: [PropertyScalarWhereInput!]
+  OR: [PropertyScalarWhereInput!]
+  NOT: [PropertyScalarWhereInput!]
+  id: IntFilter
+  number: StringFilter
+  floor: IntFilter
+  entrance: IntNullableFilter
+  totalArea: FloatFilter
+  livingArea: FloatNullableFilter
+  rooms: IntNullableFilter
+  wallHeight: FloatNullableFilter
+  propertyType: EnumPropertyTypeFilter
+  buildingId: IntFilter
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input FloatNullableFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatNullableFilter
+}
+
+input NestedFloatNullableFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatNullableFilter
+}
+
+input PropertyUpdateManyMutationInput {
+  number: StringFieldUpdateOperationsInput
+  floor: IntFieldUpdateOperationsInput
+  entrance: NullableIntFieldUpdateOperationsInput
+  totalArea: FloatFieldUpdateOperationsInput
+  livingArea: NullableFloatFieldUpdateOperationsInput
+  rooms: NullableIntFieldUpdateOperationsInput
+  wallHeight: NullableFloatFieldUpdateOperationsInput
+  propertyType: EnumPropertyTypeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateWithWhereUniqueWithoutDeveloperInput {
+  where: BuildingWhereUniqueInput!
+  data: BuildingUpdateWithoutDeveloperInput!
+}
+
+input BuildingUpdateManyWithWhereWithoutDeveloperInput {
+  where: BuildingScalarWhereInput!
+  data: BuildingUpdateManyMutationInput!
+}
+
+input BuildingScalarWhereInput {
+  AND: [BuildingScalarWhereInput!]
+  OR: [BuildingScalarWhereInput!]
+  NOT: [BuildingScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  address: StringFilter
+  completionDate: DateTimeFilter
+  completed: BoolFilter
+  latitude: FloatNullableFilter
+  longitude: FloatNullableFilter
+  propertyClass: EnumPropertyClassNullableFilter
+  decorType: EnumDecorTypeNullableFilter
+  wallMaterial: EnumWallMaterialNullableFilter
+  img: StringNullableFilter
+  domRfId: IntNullableFilter
+  domClickId: IntNullableFilter
+  cityId: IntFilter
+  districtId: IntFilter
+  developerId: IntFilter
+  groupId: IntFilter
+  complexId: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input EnumPropertyClassNullableFilter {
+  equals: PropertyClass
+  in: [PropertyClass!]
+  notIn: [PropertyClass!]
+  not: NestedEnumPropertyClassNullableFilter
+}
+
+input NestedEnumPropertyClassNullableFilter {
+  equals: PropertyClass
+  in: [PropertyClass!]
+  notIn: [PropertyClass!]
+  not: NestedEnumPropertyClassNullableFilter
+}
+
+input EnumDecorTypeNullableFilter {
+  equals: DecorType
+  in: [DecorType!]
+  notIn: [DecorType!]
+  not: NestedEnumDecorTypeNullableFilter
+}
+
+input NestedEnumDecorTypeNullableFilter {
+  equals: DecorType
+  in: [DecorType!]
+  notIn: [DecorType!]
+  not: NestedEnumDecorTypeNullableFilter
+}
+
+input EnumWallMaterialNullableFilter {
+  equals: WallMaterial
+  in: [WallMaterial!]
+  notIn: [WallMaterial!]
+  not: NestedEnumWallMaterialNullableFilter
+}
+
+input NestedEnumWallMaterialNullableFilter {
+  equals: WallMaterial
+  in: [WallMaterial!]
+  notIn: [WallMaterial!]
+  not: NestedEnumWallMaterialNullableFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input BuildingUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DeveloperUpdateWithWhereUniqueWithoutGroupInput {
+  where: DeveloperWhereUniqueInput!
+  data: DeveloperUpdateWithoutGroupInput!
+}
+
+input DeveloperUpdateManyWithWhereWithoutGroupInput {
+  where: DeveloperScalarWhereInput!
+  data: DeveloperUpdateManyMutationInput!
+}
+
+input DeveloperScalarWhereInput {
+  AND: [DeveloperScalarWhereInput!]
+  OR: [DeveloperScalarWhereInput!]
+  NOT: [DeveloperScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  fullName: StringFilter
+  legalAddress: StringNullableFilter
+  actualAddress: StringNullableFilter
+  inn: StringFilter
+  kpp: StringNullableFilter
+  ogrn: StringNullableFilter
+  manager: StringNullableFilter
+  website: StringNullableFilter
+  phone: StringNullableFilter
+  email: StringNullableFilter
+  info: StringNullableFilter
+  groupId: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input DeveloperUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  legalAddress: NullableStringFieldUpdateOperationsInput
+  actualAddress: NullableStringFieldUpdateOperationsInput
+  inn: StringFieldUpdateOperationsInput
+  kpp: NullableStringFieldUpdateOperationsInput
+  ogrn: NullableStringFieldUpdateOperationsInput
+  manager: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  phone: NullableStringFieldUpdateOperationsInput
+  email: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateWithWhereUniqueWithoutCityInput {
+  where: BuildingWhereUniqueInput!
+  data: BuildingUpdateWithoutCityInput!
+}
+
+input BuildingUpdateManyWithWhereWithoutCityInput {
+  where: BuildingScalarWhereInput!
+  data: BuildingUpdateManyMutationInput!
+}
+
+input BuildingUpdateManyWithoutComplexNestedInput {
+  create: [BuildingCreateWithoutComplexInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutComplexInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutComplexInput!]
+  createMany: BuildingCreateManyComplexInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutComplexInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutComplexInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input BuildingUpsertWithWhereUniqueWithoutComplexInput {
+  where: BuildingWhereUniqueInput!
+  update: BuildingUpdateWithoutComplexInput!
+  create: BuildingCreateWithoutComplexInput!
+}
+
+input BuildingUpdateWithoutComplexInput {
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutBuildingsNestedInput
+  district: DistrictUpdateOneRequiredWithoutBuildingsNestedInput
+  developer: DeveloperUpdateOneRequiredWithoutBuildingsNestedInput
+  group: GroupUpdateOneRequiredWithoutBuildingsNestedInput
+  sales: SaleUpdateManyWithoutBuildingNestedInput
+  properties: PropertyUpdateManyWithoutBuildingNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateWithWhereUniqueWithoutComplexInput {
+  where: BuildingWhereUniqueInput!
+  data: BuildingUpdateWithoutComplexInput!
+}
+
+input BuildingUpdateManyWithWhereWithoutComplexInput {
+  where: BuildingScalarWhereInput!
+  data: BuildingUpdateManyMutationInput!
+}
+
+input ComplexUpdateWithWhereUniqueWithoutGroupInput {
+  where: ComplexWhereUniqueInput!
+  data: ComplexUpdateWithoutGroupInput!
+}
+
+input ComplexUpdateManyWithWhereWithoutGroupInput {
+  where: ComplexScalarWhereInput!
+  data: ComplexUpdateManyMutationInput!
+}
+
+input ComplexScalarWhereInput {
+  AND: [ComplexScalarWhereInput!]
+  OR: [ComplexScalarWhereInput!]
+  NOT: [ComplexScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  shortName: StringNullableFilter
+  website: StringNullableFilter
+  info: StringNullableFilter
+  domRfId: IntNullableFilter
+  domClickId: IntNullableFilter
+  groupId: IntFilter
+  cityId: IntFilter
+  districtId: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input ComplexUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  shortName: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateWithWhereUniqueWithoutGroupInput {
+  where: BuildingWhereUniqueInput!
+  data: BuildingUpdateWithoutGroupInput!
+}
+
+input BuildingUpdateManyWithWhereWithoutGroupInput {
+  where: BuildingScalarWhereInput!
+  data: BuildingUpdateManyMutationInput!
+}
+
+input GroupUpdateWithWhereUniqueWithoutRegionsInput {
+  where: GroupWhereUniqueInput!
+  data: GroupUpdateWithoutRegionsInput!
+}
+
+input GroupUpdateManyWithWhereWithoutRegionsInput {
+  where: GroupScalarWhereInput!
+  data: GroupUpdateManyMutationInput!
+}
+
+input GroupScalarWhereInput {
+  AND: [GroupScalarWhereInput!]
+  OR: [GroupScalarWhereInput!]
+  NOT: [GroupScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input GroupUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateManyWithoutDistrictNestedInput {
+  create: [BuildingCreateWithoutDistrictInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDistrictInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutDistrictInput!]
+  createMany: BuildingCreateManyDistrictInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutDistrictInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutDistrictInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input BuildingUpsertWithWhereUniqueWithoutDistrictInput {
+  where: BuildingWhereUniqueInput!
+  update: BuildingUpdateWithoutDistrictInput!
+  create: BuildingCreateWithoutDistrictInput!
+}
+
+input BuildingUpdateWithoutDistrictInput {
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutBuildingsNestedInput
+  developer: DeveloperUpdateOneRequiredWithoutBuildingsNestedInput
+  group: GroupUpdateOneRequiredWithoutBuildingsNestedInput
+  complex: ComplexUpdateOneRequiredWithoutBuildingsNestedInput
+  sales: SaleUpdateManyWithoutBuildingNestedInput
+  properties: PropertyUpdateManyWithoutBuildingNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUpdateWithWhereUniqueWithoutDistrictInput {
+  where: BuildingWhereUniqueInput!
+  data: BuildingUpdateWithoutDistrictInput!
+}
+
+input BuildingUpdateManyWithWhereWithoutDistrictInput {
+  where: BuildingScalarWhereInput!
+  data: BuildingUpdateManyMutationInput!
+}
+
+input ComplexUpdateWithWhereUniqueWithoutCityInput {
+  where: ComplexWhereUniqueInput!
+  data: ComplexUpdateWithoutCityInput!
+}
+
+input ComplexUpdateManyWithWhereWithoutCityInput {
+  where: ComplexScalarWhereInput!
+  data: ComplexUpdateManyMutationInput!
+}
+
+input CityUpdateWithWhereUniqueWithoutRegionInput {
+  where: CityWhereUniqueInput!
+  data: CityUpdateWithoutRegionInput!
+}
+
+input CityUpdateManyWithWhereWithoutRegionInput {
+  where: CityScalarWhereInput!
+  data: CityUpdateManyMutationInput!
+}
+
+input CityScalarWhereInput {
+  AND: [CityScalarWhereInput!]
+  OR: [CityScalarWhereInput!]
+  NOT: [CityScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  regionId: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input CityUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input RegionUpdateWithWhereUniqueWithoutGroupsInput {
+  where: RegionWhereUniqueInput!
+  data: RegionUpdateWithoutGroupsInput!
+}
+
+input RegionUpdateManyWithWhereWithoutGroupsInput {
+  where: RegionScalarWhereInput!
+  data: RegionUpdateManyMutationInput!
+}
+
+input RegionScalarWhereInput {
+  AND: [RegionScalarWhereInput!]
+  OR: [RegionScalarWhereInput!]
+  NOT: [RegionScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input RegionUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ComplexUpdateWithWhereUniqueWithoutDistrictInput {
+  where: ComplexWhereUniqueInput!
+  data: ComplexUpdateWithoutDistrictInput!
+}
+
+input ComplexUpdateManyWithWhereWithoutDistrictInput {
+  where: ComplexScalarWhereInput!
+  data: ComplexUpdateManyMutationInput!
+}
+
+input ComplexUncheckedUpdateManyWithoutCityNestedInput {
+  create: [ComplexCreateWithoutCityInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutCityInput!]
+  upsert: [ComplexUpsertWithWhereUniqueWithoutCityInput!]
+  createMany: ComplexCreateManyCityInputEnvelope
+  set: [ComplexWhereUniqueInput!]
+  disconnect: [ComplexWhereUniqueInput!]
+  delete: [ComplexWhereUniqueInput!]
+  connect: [ComplexWhereUniqueInput!]
+  update: [ComplexUpdateWithWhereUniqueWithoutCityInput!]
+  updateMany: [ComplexUpdateManyWithWhereWithoutCityInput!]
+  deleteMany: [ComplexScalarWhereInput!]
+}
+
+input BuildingUncheckedUpdateManyWithoutCityNestedInput {
+  create: [BuildingCreateWithoutCityInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutCityInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutCityInput!]
+  createMany: BuildingCreateManyCityInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutCityInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutCityInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input RegionUncheckedCreateInput {
+  id: Int
+  name: String!
+  cities: CityUncheckedCreateNestedManyWithoutRegionInput
+  groups: GroupUncheckedCreateNestedManyWithoutRegionsInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CityUncheckedCreateNestedManyWithoutRegionInput {
+  create: [CityCreateWithoutRegionInput!]
+  connectOrCreate: [CityCreateOrConnectWithoutRegionInput!]
+  createMany: CityCreateManyRegionInputEnvelope
+  connect: [CityWhereUniqueInput!]
+}
+
+input GroupUncheckedCreateNestedManyWithoutRegionsInput {
+  create: [GroupCreateWithoutRegionsInput!]
+  connectOrCreate: [GroupCreateOrConnectWithoutRegionsInput!]
+  connect: [GroupWhereUniqueInput!]
+}
+
+input RegionUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  cities: CityUncheckedUpdateManyWithoutRegionNestedInput
+  groups: GroupUncheckedUpdateManyWithoutRegionsNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CityUncheckedUpdateManyWithoutRegionNestedInput {
+  create: [CityCreateWithoutRegionInput!]
+  connectOrCreate: [CityCreateOrConnectWithoutRegionInput!]
+  upsert: [CityUpsertWithWhereUniqueWithoutRegionInput!]
+  createMany: CityCreateManyRegionInputEnvelope
+  set: [CityWhereUniqueInput!]
+  disconnect: [CityWhereUniqueInput!]
+  delete: [CityWhereUniqueInput!]
+  connect: [CityWhereUniqueInput!]
+  update: [CityUpdateWithWhereUniqueWithoutRegionInput!]
+  updateMany: [CityUpdateManyWithWhereWithoutRegionInput!]
+  deleteMany: [CityScalarWhereInput!]
+}
+
+input GroupUncheckedUpdateManyWithoutRegionsNestedInput {
+  create: [GroupCreateWithoutRegionsInput!]
+  connectOrCreate: [GroupCreateOrConnectWithoutRegionsInput!]
+  upsert: [GroupUpsertWithWhereUniqueWithoutRegionsInput!]
+  set: [GroupWhereUniqueInput!]
+  disconnect: [GroupWhereUniqueInput!]
+  delete: [GroupWhereUniqueInput!]
+  connect: [GroupWhereUniqueInput!]
+  update: [GroupUpdateWithWhereUniqueWithoutRegionsInput!]
+  updateMany: [GroupUpdateManyWithWhereWithoutRegionsInput!]
+  deleteMany: [GroupScalarWhereInput!]
+}
+
+input RegistrationInput {
+  """Имя пользователя"""
+  name: String
+
+  """Телефон"""
+  phone: String
+
+  """Email"""
+  email: String!
+
+  """Пароль"""
+  password: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+input BuildingUncheckedCreateInput {
+  id: Int
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  cityId: Int!
+  districtId: Int!
+  developerId: Int!
+  groupId: Int!
+  complexId: Int!
+  sales: SaleUncheckedCreateNestedManyWithoutBuildingInput
+  properties: PropertyUncheckedCreateNestedManyWithoutBuildingInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input SaleUncheckedCreateNestedManyWithoutBuildingInput {
+  create: [SaleCreateWithoutBuildingInput!]
+  connectOrCreate: [SaleCreateOrConnectWithoutBuildingInput!]
+  createMany: SaleCreateManyBuildingInputEnvelope
+  connect: [SaleWhereUniqueInput!]
+}
+
+input PropertyUncheckedCreateNestedManyWithoutBuildingInput {
+  create: [PropertyCreateWithoutBuildingInput!]
+  connectOrCreate: [PropertyCreateOrConnectWithoutBuildingInput!]
+  createMany: PropertyCreateManyBuildingInputEnvelope
+  connect: [PropertyWhereUniqueInput!]
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input BuildingUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  cityId: IntFieldUpdateOperationsInput
+  districtId: IntFieldUpdateOperationsInput
+  developerId: IntFieldUpdateOperationsInput
+  groupId: IntFieldUpdateOperationsInput
+  complexId: IntFieldUpdateOperationsInput
+  sales: SaleUncheckedUpdateManyWithoutBuildingNestedInput
+  properties: PropertyUncheckedUpdateManyWithoutBuildingNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input SaleUncheckedUpdateManyWithoutBuildingNestedInput {
+  create: [SaleCreateWithoutBuildingInput!]
+  connectOrCreate: [SaleCreateOrConnectWithoutBuildingInput!]
+  upsert: [SaleUpsertWithWhereUniqueWithoutBuildingInput!]
+  createMany: SaleCreateManyBuildingInputEnvelope
+  set: [SaleWhereUniqueInput!]
+  disconnect: [SaleWhereUniqueInput!]
+  delete: [SaleWhereUniqueInput!]
+  connect: [SaleWhereUniqueInput!]
+  update: [SaleUpdateWithWhereUniqueWithoutBuildingInput!]
+  updateMany: [SaleUpdateManyWithWhereWithoutBuildingInput!]
+  deleteMany: [SaleScalarWhereInput!]
+}
+
+input PropertyUncheckedUpdateManyWithoutBuildingNestedInput {
+  create: [PropertyCreateWithoutBuildingInput!]
+  connectOrCreate: [PropertyCreateOrConnectWithoutBuildingInput!]
+  upsert: [PropertyUpsertWithWhereUniqueWithoutBuildingInput!]
+  createMany: PropertyCreateManyBuildingInputEnvelope
+  set: [PropertyWhereUniqueInput!]
+  disconnect: [PropertyWhereUniqueInput!]
+  delete: [PropertyWhereUniqueInput!]
+  connect: [PropertyWhereUniqueInput!]
+  update: [PropertyUpdateWithWhereUniqueWithoutBuildingInput!]
+  updateMany: [PropertyUpdateManyWithWhereWithoutBuildingInput!]
+  deleteMany: [PropertyScalarWhereInput!]
+}
+
+input SaleUncheckedCreateInput {
+  id: Int
+  month: Int!
+  year: Int!
+  amount: Int!
+  area: Float!
+  sum: Float!
+  propertyType: PropertyType!
+  buildingId: Int!
+}
+
+input SaleUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  month: IntFieldUpdateOperationsInput
+  year: IntFieldUpdateOperationsInput
+  amount: IntFieldUpdateOperationsInput
+  area: FloatFieldUpdateOperationsInput
+  sum: FloatFieldUpdateOperationsInput
+  propertyType: EnumPropertyTypeFieldUpdateOperationsInput
+  buildingId: IntFieldUpdateOperationsInput
+}
+
+input PropertyUncheckedCreateInput {
+  id: Int
+  number: String!
+  floor: Int!
+  entrance: Int
+  totalArea: Float!
+  livingArea: Float
+  rooms: Int
+  wallHeight: Float
+  propertyType: PropertyType!
+  buildingId: Int!
+}
+
+input PropertyUpdateInput {
+  number: StringFieldUpdateOperationsInput
+  floor: IntFieldUpdateOperationsInput
+  entrance: NullableIntFieldUpdateOperationsInput
+  totalArea: FloatFieldUpdateOperationsInput
+  livingArea: NullableFloatFieldUpdateOperationsInput
+  rooms: NullableIntFieldUpdateOperationsInput
+  wallHeight: NullableFloatFieldUpdateOperationsInput
+  propertyType: EnumPropertyTypeFieldUpdateOperationsInput
+  building: BuildingUpdateOneRequiredWithoutPropertiesNestedInput
+}
+
+input BuildingUpdateOneRequiredWithoutPropertiesNestedInput {
+  create: BuildingCreateWithoutPropertiesInput
+  connectOrCreate: BuildingCreateOrConnectWithoutPropertiesInput
+  upsert: BuildingUpsertWithoutPropertiesInput
+  connect: BuildingWhereUniqueInput
+  update: BuildingUpdateWithoutPropertiesInput
+}
+
+input BuildingCreateWithoutPropertiesInput {
+  name: String!
+  address: String!
+  completionDate: DateTime!
+  completed: Boolean
+  latitude: Float
+  longitude: Float
+  propertyClass: PropertyClass
+  decorType: DecorType
+  wallMaterial: WallMaterial
+  img: String
+  domRfId: Int
+  domClickId: Int
+  city: CityCreateNestedOneWithoutBuildingsInput!
+  district: DistrictCreateNestedOneWithoutBuildingsInput!
+  developer: DeveloperCreateNestedOneWithoutBuildingsInput!
+  group: GroupCreateNestedOneWithoutBuildingsInput!
+  complex: ComplexCreateNestedOneWithoutBuildingsInput!
+  sales: SaleCreateNestedManyWithoutBuildingInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingCreateOrConnectWithoutPropertiesInput {
+  where: BuildingWhereUniqueInput!
+  create: BuildingCreateWithoutPropertiesInput!
+}
+
+input BuildingUpsertWithoutPropertiesInput {
+  update: BuildingUpdateWithoutPropertiesInput!
+  create: BuildingCreateWithoutPropertiesInput!
+}
+
+input BuildingUpdateWithoutPropertiesInput {
+  name: StringFieldUpdateOperationsInput
+  address: StringFieldUpdateOperationsInput
+  completionDate: DateTimeFieldUpdateOperationsInput
+  completed: BoolFieldUpdateOperationsInput
+  latitude: NullableFloatFieldUpdateOperationsInput
+  longitude: NullableFloatFieldUpdateOperationsInput
+  propertyClass: NullableEnumPropertyClassFieldUpdateOperationsInput
+  decorType: NullableEnumDecorTypeFieldUpdateOperationsInput
+  wallMaterial: NullableEnumWallMaterialFieldUpdateOperationsInput
+  img: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  city: CityUpdateOneRequiredWithoutBuildingsNestedInput
+  district: DistrictUpdateOneRequiredWithoutBuildingsNestedInput
+  developer: DeveloperUpdateOneRequiredWithoutBuildingsNestedInput
+  group: GroupUpdateOneRequiredWithoutBuildingsNestedInput
+  complex: ComplexUpdateOneRequiredWithoutBuildingsNestedInput
+  sales: SaleUpdateManyWithoutBuildingNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input DistrictUncheckedCreateInput {
+  id: Int
+  name: String!
+  cityId: Int!
+  complexes: ComplexUncheckedCreateNestedManyWithoutDistrictInput
+  buildings: BuildingUncheckedCreateNestedManyWithoutDistrictInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ComplexUncheckedCreateNestedManyWithoutDistrictInput {
+  create: [ComplexCreateWithoutDistrictInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutDistrictInput!]
+  createMany: ComplexCreateManyDistrictInputEnvelope
+  connect: [ComplexWhereUniqueInput!]
+}
+
+input BuildingUncheckedCreateNestedManyWithoutDistrictInput {
+  create: [BuildingCreateWithoutDistrictInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDistrictInput!]
+  createMany: BuildingCreateManyDistrictInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input DistrictUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  cityId: IntFieldUpdateOperationsInput
+  complexes: ComplexUncheckedUpdateManyWithoutDistrictNestedInput
+  buildings: BuildingUncheckedUpdateManyWithoutDistrictNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ComplexUncheckedUpdateManyWithoutDistrictNestedInput {
+  create: [ComplexCreateWithoutDistrictInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutDistrictInput!]
+  upsert: [ComplexUpsertWithWhereUniqueWithoutDistrictInput!]
+  createMany: ComplexCreateManyDistrictInputEnvelope
+  set: [ComplexWhereUniqueInput!]
+  disconnect: [ComplexWhereUniqueInput!]
+  delete: [ComplexWhereUniqueInput!]
+  connect: [ComplexWhereUniqueInput!]
+  update: [ComplexUpdateWithWhereUniqueWithoutDistrictInput!]
+  updateMany: [ComplexUpdateManyWithWhereWithoutDistrictInput!]
+  deleteMany: [ComplexScalarWhereInput!]
+}
+
+input BuildingUncheckedUpdateManyWithoutDistrictNestedInput {
+  create: [BuildingCreateWithoutDistrictInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDistrictInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutDistrictInput!]
+  createMany: BuildingCreateManyDistrictInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutDistrictInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutDistrictInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input GroupUncheckedCreateInput {
+  id: Int
+  name: String!
+  regions: RegionUncheckedCreateNestedManyWithoutGroupsInput
+  buildings: BuildingUncheckedCreateNestedManyWithoutGroupInput
+  developers: DeveloperUncheckedCreateNestedManyWithoutGroupInput
+  complexes: ComplexUncheckedCreateNestedManyWithoutGroupInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input RegionUncheckedCreateNestedManyWithoutGroupsInput {
+  create: [RegionCreateWithoutGroupsInput!]
+  connectOrCreate: [RegionCreateOrConnectWithoutGroupsInput!]
+  connect: [RegionWhereUniqueInput!]
+}
+
+input BuildingUncheckedCreateNestedManyWithoutGroupInput {
+  create: [BuildingCreateWithoutGroupInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutGroupInput!]
+  createMany: BuildingCreateManyGroupInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input DeveloperUncheckedCreateNestedManyWithoutGroupInput {
+  create: [DeveloperCreateWithoutGroupInput!]
+  connectOrCreate: [DeveloperCreateOrConnectWithoutGroupInput!]
+  createMany: DeveloperCreateManyGroupInputEnvelope
+  connect: [DeveloperWhereUniqueInput!]
+}
+
+input ComplexUncheckedCreateNestedManyWithoutGroupInput {
+  create: [ComplexCreateWithoutGroupInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutGroupInput!]
+  createMany: ComplexCreateManyGroupInputEnvelope
+  connect: [ComplexWhereUniqueInput!]
+}
+
+input GroupUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  regions: RegionUncheckedUpdateManyWithoutGroupsNestedInput
+  buildings: BuildingUncheckedUpdateManyWithoutGroupNestedInput
+  developers: DeveloperUncheckedUpdateManyWithoutGroupNestedInput
+  complexes: ComplexUncheckedUpdateManyWithoutGroupNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input RegionUncheckedUpdateManyWithoutGroupsNestedInput {
+  create: [RegionCreateWithoutGroupsInput!]
+  connectOrCreate: [RegionCreateOrConnectWithoutGroupsInput!]
+  upsert: [RegionUpsertWithWhereUniqueWithoutGroupsInput!]
+  set: [RegionWhereUniqueInput!]
+  disconnect: [RegionWhereUniqueInput!]
+  delete: [RegionWhereUniqueInput!]
+  connect: [RegionWhereUniqueInput!]
+  update: [RegionUpdateWithWhereUniqueWithoutGroupsInput!]
+  updateMany: [RegionUpdateManyWithWhereWithoutGroupsInput!]
+  deleteMany: [RegionScalarWhereInput!]
+}
+
+input BuildingUncheckedUpdateManyWithoutGroupNestedInput {
+  create: [BuildingCreateWithoutGroupInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutGroupInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutGroupInput!]
+  createMany: BuildingCreateManyGroupInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutGroupInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutGroupInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input DeveloperUncheckedUpdateManyWithoutGroupNestedInput {
+  create: [DeveloperCreateWithoutGroupInput!]
+  connectOrCreate: [DeveloperCreateOrConnectWithoutGroupInput!]
+  upsert: [DeveloperUpsertWithWhereUniqueWithoutGroupInput!]
+  createMany: DeveloperCreateManyGroupInputEnvelope
+  set: [DeveloperWhereUniqueInput!]
+  disconnect: [DeveloperWhereUniqueInput!]
+  delete: [DeveloperWhereUniqueInput!]
+  connect: [DeveloperWhereUniqueInput!]
+  update: [DeveloperUpdateWithWhereUniqueWithoutGroupInput!]
+  updateMany: [DeveloperUpdateManyWithWhereWithoutGroupInput!]
+  deleteMany: [DeveloperScalarWhereInput!]
+}
+
+input ComplexUncheckedUpdateManyWithoutGroupNestedInput {
+  create: [ComplexCreateWithoutGroupInput!]
+  connectOrCreate: [ComplexCreateOrConnectWithoutGroupInput!]
+  upsert: [ComplexUpsertWithWhereUniqueWithoutGroupInput!]
+  createMany: ComplexCreateManyGroupInputEnvelope
+  set: [ComplexWhereUniqueInput!]
+  disconnect: [ComplexWhereUniqueInput!]
+  delete: [ComplexWhereUniqueInput!]
+  connect: [ComplexWhereUniqueInput!]
+  update: [ComplexUpdateWithWhereUniqueWithoutGroupInput!]
+  updateMany: [ComplexUpdateManyWithWhereWithoutGroupInput!]
+  deleteMany: [ComplexScalarWhereInput!]
+}
+
+input DeveloperUncheckedCreateInput {
+  id: Int
+  name: String!
+  fullName: String!
+  legalAddress: String
+  actualAddress: String
+  inn: String!
+  kpp: String
+  ogrn: String
+  manager: String
+  website: String
+  phone: String
+  email: String
+  info: String
+  groupId: Int!
+  buildings: BuildingUncheckedCreateNestedManyWithoutDeveloperInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingUncheckedCreateNestedManyWithoutDeveloperInput {
+  create: [BuildingCreateWithoutDeveloperInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDeveloperInput!]
+  createMany: BuildingCreateManyDeveloperInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input DeveloperUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  legalAddress: NullableStringFieldUpdateOperationsInput
+  actualAddress: NullableStringFieldUpdateOperationsInput
+  inn: StringFieldUpdateOperationsInput
+  kpp: NullableStringFieldUpdateOperationsInput
+  ogrn: NullableStringFieldUpdateOperationsInput
+  manager: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  phone: NullableStringFieldUpdateOperationsInput
+  email: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  groupId: IntFieldUpdateOperationsInput
+  buildings: BuildingUncheckedUpdateManyWithoutDeveloperNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUncheckedUpdateManyWithoutDeveloperNestedInput {
+  create: [BuildingCreateWithoutDeveloperInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutDeveloperInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutDeveloperInput!]
+  createMany: BuildingCreateManyDeveloperInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutDeveloperInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutDeveloperInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
+
+input ComplexUncheckedCreateInput {
+  id: Int
+  name: String!
+  shortName: String
+  website: String
+  info: String
+  domRfId: Int
+  domClickId: Int
+  groupId: Int!
+  cityId: Int!
+  districtId: Int!
+  buildings: BuildingUncheckedCreateNestedManyWithoutComplexInput
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BuildingUncheckedCreateNestedManyWithoutComplexInput {
+  create: [BuildingCreateWithoutComplexInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutComplexInput!]
+  createMany: BuildingCreateManyComplexInputEnvelope
+  connect: [BuildingWhereUniqueInput!]
+}
+
+input ComplexUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  shortName: NullableStringFieldUpdateOperationsInput
+  website: NullableStringFieldUpdateOperationsInput
+  info: NullableStringFieldUpdateOperationsInput
+  domRfId: NullableIntFieldUpdateOperationsInput
+  domClickId: NullableIntFieldUpdateOperationsInput
+  groupId: IntFieldUpdateOperationsInput
+  cityId: IntFieldUpdateOperationsInput
+  districtId: IntFieldUpdateOperationsInput
+  buildings: BuildingUncheckedUpdateManyWithoutComplexNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BuildingUncheckedUpdateManyWithoutComplexNestedInput {
+  create: [BuildingCreateWithoutComplexInput!]
+  connectOrCreate: [BuildingCreateOrConnectWithoutComplexInput!]
+  upsert: [BuildingUpsertWithWhereUniqueWithoutComplexInput!]
+  createMany: BuildingCreateManyComplexInputEnvelope
+  set: [BuildingWhereUniqueInput!]
+  disconnect: [BuildingWhereUniqueInput!]
+  delete: [BuildingWhereUniqueInput!]
+  connect: [BuildingWhereUniqueInput!]
+  update: [BuildingUpdateWithWhereUniqueWithoutComplexInput!]
+  updateMany: [BuildingUpdateManyWithWhereWithoutComplexInput!]
+  deleteMany: [BuildingScalarWhereInput!]
+}
