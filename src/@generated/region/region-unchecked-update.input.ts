@@ -8,25 +8,22 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 
 @InputType()
 export class RegionUncheckedUpdateInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => CityUncheckedUpdateManyWithoutRegionNestedInput, {
-    nullable: true,
-  })
-  cities?: CityUncheckedUpdateManyWithoutRegionNestedInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => GroupUncheckedUpdateManyWithoutRegionsNestedInput, {
-    nullable: true,
-  })
-  groups?: GroupUncheckedUpdateManyWithoutRegionsNestedInput;
+    @Field(() => CityUncheckedUpdateManyWithoutRegionNestedInput, {nullable:true})
+    cities?: CityUncheckedUpdateManyWithoutRegionNestedInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => GroupUncheckedUpdateManyWithoutRegionsNestedInput, {nullable:true})
+    groups?: GroupUncheckedUpdateManyWithoutRegionsNestedInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 }

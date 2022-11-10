@@ -761,6 +761,20 @@ type OfferMaxAggregate {
   updatedAt: DateTime
 }
 
+type PropertyCountAggregate {
+  id: Int!
+  number: Int!
+  floor: Int!
+  entrance: Int!
+  totalArea: Int!
+  livingArea: Int!
+  rooms: Int!
+  wallHeight: Int!
+  propertyType: Int!
+  buildingId: Int!
+  _all: Int!
+}
+
 type PropertyAvgAggregate {
   id: Float
   floor: Float
@@ -810,25 +824,11 @@ type PropertyMaxAggregate {
 }
 
 type AggregateProperty {
-  _count: Int!
+  _count: PropertyCountAggregate
   _avg: PropertyAvgAggregate
   _sum: PropertySumAggregate
   _min: PropertyMinAggregate
   _max: PropertyMaxAggregate
-}
-
-type PropertyCountAggregate {
-  id: Int!
-  number: Int!
-  floor: Int!
-  entrance: Int!
-  totalArea: Int!
-  livingArea: Int!
-  rooms: Int!
-  wallHeight: Int!
-  propertyType: Int!
-  buildingId: Int!
-  _all: Int!
 }
 
 type RegionCountAggregate {

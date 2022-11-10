@@ -71,16 +71,8 @@ export class SalesService {
     const now = lastRecord
       ? new Date(lastRecord.year, lastRecord.month - 1)
       : new Date();
-    const startDate = new Date(
-      now.getFullYear() - 1,
-      now.getMonth(),
-      now.getDay(),
-    );
-    const endDate = new Date(
-      now.getFullYear(),
-      now.getMonth() + 1,
-      now.getDay(),
-    );
+    const startDate = new Date(now.getFullYear() - 1, now.getMonth());
+    const endDate = new Date(now.getFullYear(), now.getMonth() + 1);
 
     const data = [];
     while (startDate < endDate) {
